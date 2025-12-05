@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple_jwt - JSON Web Tokens for Eiffel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="simple_* logo" class="logo">
+        </div>
+        <h1>simple_jwt</h1>
+        <p class="tagline">JSON Web Tokens for Eiffel</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#quickstart">Quick Start</a></li>
+            <li><a href="#structure">JWT Structure</a></li>
+            <li><a href="api/simple_jwt.html">API Reference</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li><strong>HS256 Algorithm</strong> - HMAC-SHA256 signing (most common)</li>
+                <li><strong>Token Creation</strong> - Generate signed JWTs with custom claims</li>
+                <li><strong>Token Verification</strong> - Validate signatures and expiration</li>
+                <li><strong>Claims Decoding</strong> - Extract payload data from tokens</li>
+                <li><strong>Design by Contract</strong> - Full preconditions and postconditions</li>
+                <li><strong>Standards Compliant</strong> - RFC 7519 JSON Web Token</li>
+            </ul>
+        </section>
+
+        <section id="quickstart">
+            <h2>Quick Start</h2>
+
+            <h3>Installation</h3>
+            <p>Add to your ECF:</p>
+            <pre><code>&lt;library name="simple_jwt" location="$SIMPLE_JWT\simple_jwt.ecf"/&gt;</code></pre>
+            <p>Dependencies (automatically included):</p>
+            <ul>
+                <li>simple_base64 - For Base64URL encoding</li>
+                <li>simple_hash - For HMAC-SHA256 signatures</li>
+                <li>json - For JSON parsing</li>
+            </ul>
+
+            <h3>Create a Token</h3>
+            <pre><code>local
+    jwt: SIMPLE_JWT
+    token: STRING
+do
+    create jwt.make ("your-secret-key")
+
+    -- Simple token with subject and expiration
+    token := jwt.create_token_with_claims (
+        "user@example.com",  -- subject
+        "my-application",    -- issuer
+        3600,                -- expires in 1 hour
+        Void                 -- no custom claims
+    )
+    -- Result: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+end</code></pre>
+
+            <h3>Verify a Token</h3>
+            <pre><code>local
+    jwt: SIMPLE_JWT
+do
+    create jwt.make ("your-secret-key")
+
+    -- Check signature only
+    if jwt.verify (token) then
+        print ("Valid signature%N")
+    end
+
+    -- Check signature AND expiration
+    if jwt.verify_with_expiration (token) then
+        print ("Valid and not expired%N")
+    end
+end</code></pre>
+
+            <h3>Decode Claims</h3>
+            <pre><code>local
+    jwt: SIMPLE_JWT
+    subject: detachable STRING
+    user_id: INTEGER_64
+do
+    create jwt.make ("secret")
+
+    -- Get string claim
+    subject := jwt.get_string_claim (token, "sub")
+
+    -- Get integer claim
+    user_id := jwt.get_integer_claim (token, "user_id")
+
+    -- Get full claims object
+    if attached jwt.decode_claims (token) as claims then
+        -- Access any claim
+    end
+end</code></pre>
+
+            <h3>Custom Claims</h3>
+            <pre><code>local
+    jwt: SIMPLE_JWT
+    custom: JSON_OBJECT
+    token: STRING
+do
+    create jwt.make ("secret")
+    create custom.make_empty
+    custom.put_string ("admin", "role")
+    custom.put_integer (12345, "user_id")
+    custom.put_boolean (True, "verified")
+
+    token := jwt.create_token_with_claims (
+        "admin@example.com",
+        "my-app",
+        7200,    -- 2 hours
+        custom   -- custom claims merged in
+    )
+end</code></pre>
+        </section>
+
+        <section id="structure">
+            <h2>JWT Structure</h2>
+            <p>A JWT consists of three Base64URL-encoded parts separated by dots:</p>
+            <pre><code>header.payload.signature</code></pre>
+
+            <h3>Header</h3>
+            <pre><code>{"alg":"HS256","typ":"JWT"}</code></pre>
+
+            <h3>Payload (Claims)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Claim</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>sub</code></td><td>Subject</td><td>Who the token is about</td></tr>
+                    <tr><td><code>iss</code></td><td>Issuer</td><td>Who issued the token</td></tr>
+                    <tr><td><code>iat</code></td><td>Issued At</td><td>Unix timestamp of creation</td></tr>
+                    <tr><td><code>exp</code></td><td>Expiration</td><td>Unix timestamp when token expires</td></tr>
+                    <tr><td><code>aud</code></td><td>Audience</td><td>Intended recipient</td></tr>
+                    <tr><td><code>nbf</code></td><td>Not Before</td><td>Token not valid before this time</td></tr>
+                    <tr><td><code>jti</code></td><td>JWT ID</td><td>Unique token identifier</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Signature</h3>
+            <pre><code>HMAC-SHA256(
+    base64url(header) + "." + base64url(payload),
+    secret
+)</code></pre>
+        </section>
+
+        <section id="usecases">
+            <h2>Use Cases</h2>
+            <ul>
+                <li><strong>API Authentication</strong> - Stateless authentication for REST APIs</li>
+                <li><strong>Single Sign-On</strong> - Share authentication across services</li>
+                <li><strong>Information Exchange</strong> - Securely transmit claims between parties</li>
+                <li><strong>Session Management</strong> - Alternative to server-side sessions</li>
+            </ul>
+        </section>
+
+        <section id="security">
+            <h2>Security Notes</h2>
+            <ul>
+                <li>Keep your secret key secure and never expose it</li>
+                <li>Use HTTPS to transmit tokens</li>
+                <li>Set appropriate expiration times</li>
+                <li>Don't store sensitive data in the payload (it's encoded, not encrypted)</li>
+                <li>Verify tokens on every request</li>
+            </ul>
+        </section>
+
+        <section id="specs">
+            <h2>Specifications</h2>
+            <ul>
+                <li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519</a> - JSON Web Token (JWT)</li>
+                <li><a href="https://datatracker.ietf.org/doc/html/rfc7515">RFC 7515</a> - JSON Web Signature (JWS)</li>
+                <li><a href="https://jwt.io">jwt.io</a> - JWT Debugger and Documentation</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <a href="api/simple_jwt.html">API Reference</a> |
+            <a href="https://github.com/ljr1981/simple_jwt">GitHub</a>
+        </p>
+        <p class="copyright">
+            Copyright &copy; 2024-2025 Larry Rix. MIT License.
+        </p>
+    </footer>
+</body>
+</html>

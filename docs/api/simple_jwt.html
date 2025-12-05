@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMPLE_JWT API Reference</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="../images/logo.png" alt="simple_* logo" class="logo">
+        </div>
+        <h1>SIMPLE_JWT</h1>
+        <p class="tagline">API Reference</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#creation">Creation</a></li>
+            <li><a href="#verification">Verification</a></li>
+            <li><a href="#decoding">Decoding</a></li>
+            <li><a href="#parts">Token Parts</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Class Overview</h2>
+            <p>
+                <code>SIMPLE_JWT</code> provides JWT creation, verification, and decoding using the HS256 (HMAC-SHA256) algorithm.
+            </p>
+
+            <div class="api-section">
+                <h3>Creation</h3>
+                <div class="signature">create jwt.make ("your-secret-key")</div>
+                <p>Initialize JWT handler with a secret key for HMAC signing.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: secret_not_void: a_secret /= Void</div>
+                    <div class="require">require: secret_not_empty: not a_secret.is_empty</div>
+                    <div class="ensure">ensure: secret_set: secret = a_secret</div>
+                    <div class="ensure">ensure: algorithm_hs256: algorithm.same_string ("HS256")</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="creation">
+            <h2>Token Creation</h2>
+
+            <div class="api-section">
+                <h3>create_token (a_claims: JSON_OBJECT): STRING</h3>
+                <div class="signature">token := jwt.create_token (claims)</div>
+                <p>Create a JWT with the given claims as payload.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: claims_not_void: a_claims /= Void</div>
+                    <div class="ensure">ensure: result_not_void: Result /= Void</div>
+                    <div class="ensure">ensure: has_three_parts: Result.occurrences ('.') = 2</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>create_token_with_claims (a_subject, a_issuer: detachable STRING; a_expiration_seconds: INTEGER; a_custom_claims: detachable JSON_OBJECT): STRING</h3>
+                <div class="signature">token := jwt.create_token_with_claims ("user", "app", 3600, custom)</div>
+                <p>Create a JWT with standard claims. Set <code>a_expiration_seconds</code> to 0 for no expiration.</p>
+                <p>Automatically sets <code>iat</code> (issued at) to current time.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="ensure">ensure: result_not_void: Result /= Void</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="verification">
+            <h2>Token Verification</h2>
+
+            <div class="api-section">
+                <h3>verify (a_token: STRING): BOOLEAN</h3>
+                <div class="signature">if jwt.verify (token) then ...</div>
+                <p>Verify the token's signature is valid. Does NOT check expiration.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>verify_with_expiration (a_token: STRING): BOOLEAN</h3>
+                <div class="signature">if jwt.verify_with_expiration (token) then ...</div>
+                <p>Verify the token's signature AND check that it hasn't expired.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>is_expired (a_token: STRING): BOOLEAN</h3>
+                <div class="signature">if jwt.is_expired (token) then ...</div>
+                <p>Check if the token has expired. Returns False if no <code>exp</code> claim exists.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="decoding">
+            <h2>Token Decoding</h2>
+
+            <div class="api-section">
+                <h3>decode_claims (a_token: STRING): detachable JSON_OBJECT</h3>
+                <div class="signature">claims := jwt.decode_claims (token)</div>
+                <p>Decode and return the payload claims as a JSON object. Returns Void if malformed.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>decode_header (a_token: STRING): detachable JSON_OBJECT</h3>
+                <div class="signature">header := jwt.decode_header (token)</div>
+                <p>Decode and return the header as a JSON object.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>get_claim (a_token, a_claim_name: STRING): detachable JSON_VALUE</h3>
+                <div class="signature">value := jwt.get_claim (token, "sub")</div>
+                <p>Get a specific claim as a JSON value.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                    <div class="require">require: claim_name_not_void: a_claim_name /= Void</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>get_string_claim (a_token, a_claim_name: STRING): detachable STRING</h3>
+                <div class="signature">subject := jwt.get_string_claim (token, "sub")</div>
+                <p>Get a string claim. Returns Void if claim doesn't exist or isn't a string.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                    <div class="require">require: claim_name_not_void: a_claim_name /= Void</div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>get_integer_claim (a_token, a_claim_name: STRING): INTEGER_64</h3>
+                <div class="signature">exp := jwt.get_integer_claim (token, "exp")</div>
+                <p>Get an integer claim. Returns 0 if claim doesn't exist or isn't a number.</p>
+                <div class="contracts">
+                    <h4>Contracts</h4>
+                    <div class="require">require: token_not_void: a_token /= Void</div>
+                    <div class="require">require: claim_name_not_void: a_claim_name /= Void</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parts">
+            <h2>Token Parts</h2>
+
+            <div class="api-section">
+                <h3>extract_header (a_token: STRING): STRING</h3>
+                <div class="signature">header_b64 := jwt.extract_header (token)</div>
+                <p>Extract the Base64URL-encoded header from the token.</p>
+            </div>
+
+            <div class="api-section">
+                <h3>extract_payload (a_token: STRING): STRING</h3>
+                <div class="signature">payload_b64 := jwt.extract_payload (token)</div>
+                <p>Extract the Base64URL-encoded payload from the token.</p>
+            </div>
+
+            <div class="api-section">
+                <h3>extract_signature (a_token: STRING): STRING</h3>
+                <div class="signature">sig_b64 := jwt.extract_signature (token)</div>
+                <p>Extract the Base64URL-encoded signature from the token.</p>
+            </div>
+        </section>
+
+        <section id="invariants">
+            <h2>Class Invariants</h2>
+            <div class="contracts">
+                <div class="ensure">invariant: secret_exists: secret /= Void</div>
+                <div class="ensure">invariant: secret_not_empty: not secret.is_empty</div>
+                <div class="ensure">invariant: algorithm_set: algorithm /= Void</div>
+                <div class="ensure">invariant: base64_exists: base64 /= Void</div>
+                <div class="ensure">invariant: hasher_exists: hasher /= Void</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <a href="../index.html">&larr; Back to simple_jwt</a>
+        </p>
+        <p class="copyright">
+            Copyright &copy; 2024-2025 Larry Rix. MIT License.
+        </p>
+    </footer>
+</body>
+</html>
