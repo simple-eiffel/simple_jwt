@@ -17,6 +17,7 @@
 		<library name="json" location="$ISE_LIBRARY\contrib\library\text\parser\json\library\json.ecf"/>
 		<library name="simple_base64" location="$SIMPLE_BASE64\simple_base64.ecf"/>
 		<library name="simple_hash" location="$SIMPLE_HASH\simple_hash.ecf"/>
+		<library name="simple_uuid" location="$SIMPLE_UUID\simple_uuid.ecf"/>
 		<cluster name="src" location=".\src\" recursive="true"/>
 	</target>
 	<target name="simple_jwt_tests" extends="simple_jwt">

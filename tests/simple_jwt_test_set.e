@@ -60,6 +60,38 @@ feature -- Test: Token Creation
 			assert ("token with custom", not token.is_empty)
 		end
 
+	test_create_token_with_jti
+			-- Test token creation with auto-generated jti.
+		note
+			testing: "covers/{SIMPLE_JWT}.create_token_with_jti"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token1, token2: STRING
+			jti1, jti2: detachable STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token1 := jwt.create_token_with_jti (claims)
+
+			-- Get jti from token
+			jti1 := jwt.get_string_claim (token1, "jti")
+			assert ("has jti", jti1 /= Void)
+			if attached jti1 as j1 then
+				assert ("jti is uuid format", j1.count = 36)
+			end
+
+			-- Create another token - should have different jti
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token2 := jwt.create_token_with_jti (claims)
+			jti2 := jwt.get_string_claim (token2, "jti")
+			if attached jti1 as j1 and attached jti2 as j2 then
+				assert ("different jtis", not j1.same_string (j2))
+			end
+		end
+
 feature -- Test: Token Verification
 
 	test_verify_valid_token
@@ -146,6 +178,301 @@ feature -- Test: Token Verification
 			claims.put_string ("user", "sub")
 			token := jwt.create_token (claims)
 			assert ("no exp is valid", jwt.verify_with_expiration (token))
+		end
+
+feature -- Test: Security - Algorithm Validation (CRITICAL)
+
+	test_verify_secure_valid_token
+			-- Test secure verification with valid HS256 token.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_secure"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token := jwt.create_token (claims)
+			assert ("secure verify succeeds", jwt.verify_secure (token))
+		end
+
+	test_verify_with_algorithm_correct
+			-- Test algorithm validation with correct algorithm.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_with_algorithm"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token := jwt.create_token (claims)
+			assert ("HS256 matches", jwt.verify_with_algorithm (token, "HS256"))
+		end
+
+	test_verify_with_algorithm_mismatch
+			-- Test algorithm validation rejects wrong algorithm.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_with_algorithm"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token := jwt.create_token (claims)
+			-- Token uses HS256 but we require RS256
+			assert ("RS256 rejected", not jwt.verify_with_algorithm (token, "RS256"))
+		end
+
+	test_verify_rejects_none_algorithm
+			-- Test that "none" algorithm is rejected (CRITICAL SECURITY).
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_secure", "covers/{SIMPLE_JWT}.verify_with_algorithm"
+		local
+			jwt: SIMPLE_JWT
+			base64: SIMPLE_BASE64
+			fake_header, fake_payload, fake_token: STRING
+		do
+			create jwt.make ("secret")
+			create base64.make
+
+			-- Craft a token with "none" algorithm (attack vector)
+			fake_header := base64.encode_url ("{%"alg%":%"none%",%"typ%":%"JWT%"}")
+			fake_payload := base64.encode_url ("{%"sub%":%"admin%"}")
+			fake_token := fake_header + "." + fake_payload + "."
+
+			-- verify_secure should reject it
+			assert ("none alg rejected by verify_secure", not jwt.verify_secure (fake_token))
+			assert ("none alg rejected by verify_with_algorithm", not jwt.verify_with_algorithm (fake_token, "HS256"))
+		end
+
+	test_verify_rejects_none_algorithm_case_variations
+			-- Test that "none" algorithm is rejected regardless of case.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_secure"
+		local
+			jwt: SIMPLE_JWT
+			base64: SIMPLE_BASE64
+			fake_token: STRING
+		do
+			create jwt.make ("secret")
+			create base64.make
+
+			-- Try "NONE" (uppercase)
+			fake_token := base64.encode_url ("{%"alg%":%"NONE%",%"typ%":%"JWT%"}") + "." +
+						  base64.encode_url ("{%"sub%":%"admin%"}") + "."
+			assert ("NONE rejected", not jwt.verify_secure (fake_token))
+
+			-- Try "None" (mixed case)
+			fake_token := base64.encode_url ("{%"alg%":%"None%",%"typ%":%"JWT%"}") + "." +
+						  base64.encode_url ("{%"sub%":%"admin%"}") + "."
+			assert ("None rejected", not jwt.verify_secure (fake_token))
+		end
+
+feature -- Test: Security - Clock Skew
+
+	test_clock_skew_default_zero
+			-- Test default clock skew is zero.
+		note
+			testing: "covers/{SIMPLE_JWT}.clock_skew"
+		local
+			jwt: SIMPLE_JWT
+		do
+			create jwt.make ("secret")
+			assert_integers_equal ("default zero", 0, jwt.clock_skew)
+		end
+
+	test_set_clock_skew
+			-- Test setting clock skew.
+		note
+			testing: "covers/{SIMPLE_JWT}.set_clock_skew"
+		local
+			jwt: SIMPLE_JWT
+		do
+			create jwt.make ("secret")
+			jwt.set_clock_skew (60)
+			assert_integers_equal ("clock skew set", 60, jwt.clock_skew)
+		end
+
+feature -- Test: Audience Validation
+
+	test_verify_with_audience_match
+			-- Test audience validation with matching audience.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_with_audience"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			claims.put_string ("my-api", "aud")
+			token := jwt.create_token (claims)
+			assert ("audience matches", jwt.verify_with_audience (token, "my-api"))
+		end
+
+	test_verify_with_audience_mismatch
+			-- Test audience validation with wrong audience.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_with_audience"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			claims.put_string ("api-1", "aud")
+			token := jwt.create_token (claims)
+			assert ("wrong audience rejected", not jwt.verify_with_audience (token, "api-2"))
+		end
+
+	test_verify_with_audience_array
+			-- Test audience validation with audience array.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_with_audience"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			aud_array: JSON_ARRAY
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			create aud_array.make (2)
+			aud_array.extend (create {JSON_STRING}.make_from_string ("api-1"))
+			aud_array.extend (create {JSON_STRING}.make_from_string ("api-2"))
+			claims.put (aud_array, "aud")
+			token := jwt.create_token (claims)
+
+			assert ("api-1 in array", jwt.verify_with_audience (token, "api-1"))
+			assert ("api-2 in array", jwt.verify_with_audience (token, "api-2"))
+			assert ("api-3 not in array", not jwt.verify_with_audience (token, "api-3"))
+		end
+
+feature -- Test: Not-Before (nbf) Validation
+
+	test_verify_nbf_no_claim
+			-- Test nbf validation when no nbf claim.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_nbf"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token := jwt.create_token (claims)
+			assert ("no nbf is valid", jwt.verify_nbf (token))
+		end
+
+	test_verify_nbf_valid
+			-- Test nbf validation with past nbf.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_nbf"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+			l_date: DATE_TIME
+			l_epoch: DATE_TIME
+			l_duration: DATE_TIME_DURATION
+			l_now: INTEGER_64
+		do
+			create jwt.make ("secret")
+
+			-- Get current time
+			create l_date.make_now_utc
+			create l_epoch.make (1970, 1, 1, 0, 0, 0)
+			l_duration := l_date.relative_duration (l_epoch)
+			l_now := l_duration.seconds_count
+
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			-- nbf was 1 hour ago
+			claims.put_integer (l_now - 3600, "nbf")
+			token := jwt.create_token (claims)
+			assert ("past nbf is valid", jwt.verify_nbf (token))
+		end
+
+feature -- Test: Full Verification
+
+	test_verify_full_valid_token
+			-- Test comprehensive verification with valid token.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_full"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+			l_date: DATE_TIME
+			l_epoch: DATE_TIME
+			l_duration: DATE_TIME_DURATION
+			l_now: INTEGER_64
+		do
+			create jwt.make ("secret")
+
+			-- Get current time
+			create l_date.make_now_utc
+			create l_epoch.make (1970, 1, 1, 0, 0, 0)
+			l_duration := l_date.relative_duration (l_epoch)
+			l_now := l_duration.seconds_count
+
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			claims.put_string ("my-api", "aud")
+			claims.put_integer (l_now + 3600, "exp")
+			claims.put_integer (l_now - 60, "nbf")
+			claims.put_integer (l_now, "iat")
+			token := jwt.create_token (claims)
+
+			assert ("full verify succeeds", jwt.verify_full (token, "my-api"))
+		end
+
+	test_verify_full_wrong_audience
+			-- Test verify_full rejects wrong audience.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_full"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			claims.put_string ("api-1", "aud")
+			token := jwt.create_token (claims)
+			assert ("wrong audience rejected", not jwt.verify_full (token, "api-2"))
+		end
+
+	test_verify_full_no_audience_required
+			-- Test verify_full without audience requirement.
+		note
+			testing: "covers/{SIMPLE_JWT}.verify_full"
+		local
+			jwt: SIMPLE_JWT
+			claims: JSON_OBJECT
+			token: STRING
+		do
+			create jwt.make ("secret")
+			create claims.make_empty
+			claims.put_string ("user", "sub")
+			token := jwt.create_token (claims)
+			assert ("no audience required", jwt.verify_full (token, Void))
 		end
 
 feature -- Test: Token Decoding

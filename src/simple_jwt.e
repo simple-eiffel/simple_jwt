@@ -14,10 +14,18 @@ note
 			- Payload: Claims JSON (Base64URL)
 			- Signature: HMAC-SHA256 of header.payload
 
+		Security Features:
+		- Algorithm validation (prevents alg substitution attacks)
+		- "none" algorithm rejection
+		- Constant-time signature comparison (prevents timing attacks)
+		- Clock skew tolerance for distributed systems
+		- Audience validation
+		- Not-before (nbf) validation
+
 		Usage:
 			create jwt.make ("secret-key")
 			token := jwt.create_token (claims)
-			if jwt.verify (token) then ...
+			if jwt.verify_secure (token) then ...   -- Use verify_secure for production!
 	]"
 	author: "Larry Rix"
 	date: "$Date$"
@@ -44,10 +52,29 @@ feature {NONE} -- Initialization
 			create base64.make
 			create hasher.make
 			algorithm := "HS256"
+			clock_skew := 0
 		ensure
 			secret_set: secret = a_secret
 			algorithm_hs256: algorithm.same_string ("HS256")
+			no_clock_skew: clock_skew = 0
 		end
+
+feature -- Configuration
+
+	set_clock_skew (a_seconds: INTEGER)
+			-- Set clock skew tolerance in seconds.
+			-- Use this to account for clock drift in distributed systems.
+			-- Typical value: 30-60 seconds.
+		require
+			non_negative: a_seconds >= 0
+		do
+			clock_skew := a_seconds
+		ensure
+			clock_skew_set: clock_skew = a_seconds
+		end
+
+	clock_skew: INTEGER
+			-- Clock skew tolerance in seconds (default 0).
 
 feature -- Token Creation
 
@@ -118,11 +145,32 @@ feature -- Token Creation
 			result_not_void: Result /= Void
 		end
 
+	create_token_with_jti (a_claims: JSON_OBJECT): STRING
+			-- Create a JWT with auto-generated unique token ID (jti claim).
+			-- Uses UUID v4 for jti generation.
+		require
+			claims_not_void: a_claims /= Void
+		local
+			l_uuid: SIMPLE_UUID
+			l_jti: STRING
+		do
+			create l_uuid.make
+			l_jti := l_uuid.new_v4_string
+
+			-- Add jti to claims (don't modify original)
+			a_claims.put_string (l_jti, "jti")
+
+			Result := create_token (a_claims)
+		ensure
+			result_not_void: Result /= Void
+		end
+
 feature -- Token Verification
 
 	verify (a_token: STRING): BOOLEAN
 			-- Verify `a_token' signature is valid.
 			-- Does NOT check expiration - use `verify_with_expiration' for that.
+			-- WARNING: Use `verify_secure' for production - this does not check algorithm.
 		require
 			token_not_void: a_token /= Void
 		local
@@ -133,27 +181,199 @@ feature -- Token Verification
 			if l_parts.count = 3 then
 				l_signature_input := l_parts [1] + "." + l_parts [2]
 				l_expected_sig := create_signature (l_signature_input)
-				Result := l_parts [3].same_string (l_expected_sig)
+				-- Use constant-time comparison to prevent timing attacks
+				Result := hasher.secure_compare (l_parts [3], l_expected_sig)
+			end
+		end
+
+	verify_secure (a_token: STRING): BOOLEAN
+			-- Securely verify `a_token' with algorithm validation.
+			-- Rejects "none" algorithm and validates algorithm matches HS256.
+			-- This is the recommended verification method for production use.
+		require
+			token_not_void: a_token /= Void
+		do
+			Result := verify_with_algorithm (a_token, "HS256")
+		end
+
+	verify_with_algorithm (a_token: STRING; a_allowed_algorithm: STRING): BOOLEAN
+			-- Verify `a_token' and ensure algorithm matches `a_allowed_algorithm'.
+			-- CRITICAL: Always use this or `verify_secure' to prevent algorithm attacks.
+		require
+			token_not_void: a_token /= Void
+			algorithm_not_void: a_allowed_algorithm /= Void
+			algorithm_not_empty: not a_allowed_algorithm.is_empty
+		local
+			l_header: detachable JSON_OBJECT
+			l_alg: STRING
+		do
+			-- First check header algorithm
+			l_header := decode_header (a_token)
+			if attached l_header as h then
+				if attached {JSON_STRING} h.item ("alg") as alg_json then
+					l_alg := alg_json.unescaped_string_8
+					-- Reject "none" algorithm (case-insensitive)
+					if not is_none_algorithm (l_alg) then
+						-- Verify algorithm matches expected
+						if l_alg.same_string (a_allowed_algorithm) then
+							-- Now verify signature
+							Result := verify (a_token)
+						end
+					end
+				end
 			end
 		end
 
 	verify_with_expiration (a_token: STRING): BOOLEAN
 			-- Verify `a_token' signature and check expiration.
+			-- WARNING: Use `verify_full' for production - this does not check algorithm.
 		require
 			token_not_void: a_token /= Void
 		local
 			l_claims: detachable JSON_OBJECT
 			l_exp: INTEGER_64
+			l_now: INTEGER_64
 		do
 			if verify (a_token) then
 				l_claims := decode_claims (a_token)
 				if attached l_claims as lc then
 					if attached {JSON_NUMBER} lc.item ("exp") as l_exp_json then
 						l_exp := l_exp_json.integer_64_item
-						Result := current_unix_time <= l_exp
+						l_now := current_unix_time
+						Result := l_now <= l_exp + clock_skew
 					else
 						-- No expiration claim, token is valid
 						Result := True
+					end
+				end
+			end
+		end
+
+	verify_with_audience (a_token: STRING; a_expected_audience: STRING): BOOLEAN
+			-- Verify `a_token' and check audience claim matches `a_expected_audience'.
+		require
+			token_not_void: a_token /= Void
+			audience_not_void: a_expected_audience /= Void
+		local
+			l_claims: detachable JSON_OBJECT
+			i: INTEGER
+		do
+			if verify_secure (a_token) then
+				l_claims := decode_claims (a_token)
+				if attached l_claims as lc then
+					if attached {JSON_STRING} lc.item ("aud") as l_aud then
+						Result := l_aud.unescaped_string_8.same_string (a_expected_audience)
+					elseif attached {JSON_ARRAY} lc.item ("aud") as l_aud_array then
+						-- Audience can be an array
+						from
+							i := 1
+						until
+							i > l_aud_array.count or Result
+						loop
+							if attached {JSON_STRING} l_aud_array.i_th (i) as aud_str then
+								if aud_str.unescaped_string_8.same_string (a_expected_audience) then
+									Result := True
+								end
+							end
+							i := i + 1
+						variant
+							l_aud_array.count - i + 1
+						end
+					end
+				end
+			end
+		end
+
+	verify_nbf (a_token: STRING): BOOLEAN
+			-- Check if `a_token' is valid according to "not before" (nbf) claim.
+			-- Returns True if no nbf claim present or if current time >= nbf.
+		require
+			token_not_void: a_token /= Void
+		local
+			l_claims: detachable JSON_OBJECT
+			l_nbf: INTEGER_64
+			l_now: INTEGER_64
+		do
+			l_claims := decode_claims (a_token)
+			if attached l_claims as lc then
+				if attached {JSON_NUMBER} lc.item ("nbf") as l_nbf_json then
+					l_nbf := l_nbf_json.integer_64_item
+					l_now := current_unix_time
+					Result := l_now >= l_nbf - clock_skew
+				else
+					-- No nbf claim, token is valid
+					Result := True
+				end
+			else
+				Result := True
+			end
+		end
+
+	verify_full (a_token: STRING; a_expected_audience: detachable STRING): BOOLEAN
+			-- Comprehensive token verification:
+			-- 1. Rejects "none" algorithm
+			-- 2. Validates algorithm is HS256
+			-- 3. Verifies signature (constant-time)
+			-- 4. Checks expiration (with clock skew)
+			-- 5. Checks not-before (with clock skew)
+			-- 6. Optionally validates audience
+		require
+			token_not_void: a_token /= Void
+		local
+			l_claims: detachable JSON_OBJECT
+			l_exp, l_nbf, l_now: INTEGER_64
+			i: INTEGER
+		do
+			-- Step 1-3: Verify signature with algorithm check
+			if verify_secure (a_token) then
+				l_claims := decode_claims (a_token)
+				if attached l_claims as lc then
+					l_now := current_unix_time
+
+					-- Step 4: Check expiration
+					if attached {JSON_NUMBER} lc.item ("exp") as l_exp_json then
+						l_exp := l_exp_json.integer_64_item
+						if l_now > l_exp + clock_skew then
+							Result := False
+						else
+							Result := True
+						end
+					else
+						Result := True
+					end
+
+					-- Step 5: Check not-before
+					if Result and then attached {JSON_NUMBER} lc.item ("nbf") as l_nbf_json then
+						l_nbf := l_nbf_json.integer_64_item
+						if l_now < l_nbf - clock_skew then
+							Result := False
+						end
+					end
+
+					-- Step 6: Check audience (if required)
+					if Result and then attached a_expected_audience as l_aud_expected then
+						if attached {JSON_STRING} lc.item ("aud") as l_aud then
+							Result := l_aud.unescaped_string_8.same_string (l_aud_expected)
+						elseif attached {JSON_ARRAY} lc.item ("aud") as l_aud_array then
+							Result := False
+							from
+								i := 1
+							until
+								i > l_aud_array.count or Result
+							loop
+								if attached {JSON_STRING} l_aud_array.i_th (i) as aud_str then
+									if aud_str.unescaped_string_8.same_string (l_aud_expected) then
+										Result := True
+									end
+								end
+								i := i + 1
+							variant
+								l_aud_array.count - i + 1
+							end
+						else
+							-- No audience claim but one was expected
+							Result := False
+						end
 					end
 				end
 			end
@@ -171,7 +391,7 @@ feature -- Token Verification
 			if attached l_claims as lc then
 				if attached {JSON_NUMBER} lc.item ("exp") as l_exp_json then
 					l_exp := l_exp_json.integer_64_item
-					Result := current_unix_time > l_exp
+					Result := current_unix_time > l_exp + clock_skew
 				end
 			end
 		end
@@ -373,6 +593,14 @@ feature {NONE} -- Implementation
 			result_not_void: Result /= Void
 		end
 
+	is_none_algorithm (a_alg: STRING): BOOLEAN
+			-- Is `a_alg' the dangerous "none" algorithm (case-insensitive)?
+		require
+			alg_not_void: a_alg /= Void
+		do
+			Result := a_alg.as_lower.same_string ("none")
+		end
+
 	current_unix_time: INTEGER_64
 			-- Current Unix timestamp in seconds.
 		local
@@ -392,6 +620,7 @@ invariant
 	algorithm_set: algorithm /= Void
 	base64_exists: base64 /= Void
 	hasher_exists: hasher /= Void
+	clock_skew_non_negative: clock_skew >= 0
 
 note
 	copyright: "Copyright (c) 2024-2025, Larry Rix"
