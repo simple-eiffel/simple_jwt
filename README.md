@@ -28,9 +28,10 @@ Add to your ECF:
 Set environment variables:
 ```
 SIMPLE_JWT=D:\prod\simple_jwt
-SIMPLE_BASE64=D:\prod\simple_base64
-SIMPLE_HASH=D:\prod\simple_hash
+SIMPLE_FOUNDATION_API=D:\prod\simple_foundation_api
 ```
+
+Note: simple_jwt uses simple_foundation_api for encoding and hashing operations.
 
 ## Usage
 
@@ -137,8 +138,7 @@ header.payload.signature
 
 ## Dependencies
 
-- simple_base64 - Base64URL encoding
-- simple_hash - HMAC-SHA256 signatures
+- simple_foundation_api - Base64URL encoding, HMAC-SHA256 signatures, UUID generation
 - json - JSON parsing (EiffelStudio contrib)
 
 ## License

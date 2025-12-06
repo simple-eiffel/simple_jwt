@@ -49,8 +49,7 @@ feature {NONE} -- Initialization
 			secret_not_empty: not a_secret.is_empty
 		do
 			secret := a_secret
-			create base64.make
-			create hasher.make
+			create foundation.make
 			algorithm := "HS256"
 			clock_skew := 0
 		ensure
@@ -151,11 +150,9 @@ feature -- Token Creation
 		require
 			claims_not_void: a_claims /= Void
 		local
-			l_uuid: SIMPLE_UUID
 			l_jti: STRING
 		do
-			create l_uuid.make
-			l_jti := l_uuid.new_v4_string
+			l_jti := foundation.new_uuid
 
 			-- Add jti to claims (don't modify original)
 			a_claims.put_string (l_jti, "jti")
@@ -182,7 +179,7 @@ feature -- Token Verification
 				l_signature_input := l_parts [1] + "." + l_parts [2]
 				l_expected_sig := create_signature (l_signature_input)
 				-- Use constant-time comparison to prevent timing attacks
-				Result := hasher.secure_compare (l_parts [3], l_expected_sig)
+				Result := foundation.secure_compare (l_parts [3], l_expected_sig)
 			end
 		end
 
@@ -528,11 +525,8 @@ feature {NONE} -- Implementation
 	algorithm: STRING
 			-- Algorithm (currently only HS256).
 
-	base64: SIMPLE_BASE64
-			-- Base64 encoder/decoder.
-
-	hasher: SIMPLE_HASH
-			-- Hash calculator.
+	foundation: FOUNDATION
+			-- Foundation API for encoding, hashing, and UUID generation.
 
 	header_json: STRING
 			-- Standard JWT header for HS256.
@@ -549,7 +543,7 @@ feature {NONE} -- Implementation
 		local
 			l_hmac_bytes: ARRAY [NATURAL_8]
 		do
-			l_hmac_bytes := hasher.hmac_sha256_bytes (secret, a_input)
+			l_hmac_bytes := foundation.hmac_sha256_bytes (secret, a_input)
 			Result := base64_url_encode_bytes (l_hmac_bytes)
 		ensure
 			result_not_void: Result /= Void
@@ -560,7 +554,7 @@ feature {NONE} -- Implementation
 		require
 			input_not_void: a_input /= Void
 		do
-			Result := base64.encode_url (a_input)
+			Result := foundation.base64_url_encode (a_input)
 		ensure
 			result_not_void: Result /= Void
 			no_padding: not Result.has ('=')
@@ -573,12 +567,12 @@ feature {NONE} -- Implementation
 		local
 			l_str: STRING
 		do
-			-- Convert bytes to string
+			-- Convert bytes to string then encode as URL-safe Base64
 			create l_str.make (a_bytes.count)
 			across a_bytes as b loop
 				l_str.append_character (b.item.to_character_8)
 			end
-			Result := base64.encode_url (l_str)
+			Result := foundation.base64_url_encode (l_str)
 		ensure
 			result_not_void: Result /= Void
 		end
@@ -588,7 +582,7 @@ feature {NONE} -- Implementation
 		require
 			input_not_void: a_input /= Void
 		do
-			Result := base64.decode_url (a_input)
+			Result := foundation.base64_url_decode (a_input)
 		ensure
 			result_not_void: Result /= Void
 		end
@@ -618,8 +612,7 @@ invariant
 	secret_exists: secret /= Void
 	secret_not_empty: not secret.is_empty
 	algorithm_set: algorithm /= Void
-	base64_exists: base64 /= Void
-	hasher_exists: hasher /= Void
+	foundation_exists: foundation /= Void
 	clock_skew_non_negative: clock_skew >= 0
 
 note
