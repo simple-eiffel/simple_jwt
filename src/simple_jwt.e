@@ -97,7 +97,6 @@ feature -- Token Creation
 			-- Combine
 			Result := l_signature_input + "." + l_signature
 		ensure
-			result_not_void: Result /= Void
 			has_three_parts: Result.occurrences ('.') = 2
 		end
 
@@ -140,8 +139,6 @@ feature -- Token Creation
 			end
 
 			Result := create_token (l_claims)
-		ensure
-			result_not_void: Result /= Void
 		end
 
 	create_token_with_jti (a_claims: JSON_OBJECT): STRING
@@ -158,8 +155,6 @@ feature -- Token Creation
 			a_claims.put_string (l_jti, "jti")
 
 			Result := create_token (a_claims)
-		ensure
-			result_not_void: Result /= Void
 		end
 
 feature -- Token Verification
@@ -532,8 +527,6 @@ feature {NONE} -- Implementation
 			-- Standard JWT header for HS256.
 		do
 			Result := "{%"alg%":%"HS256%",%"typ%":%"JWT%"}"
-		ensure
-			result_not_void: Result /= Void
 		end
 
 	create_signature (a_input: STRING): STRING
@@ -545,8 +538,6 @@ feature {NONE} -- Implementation
 		do
 			l_hmac_bytes := foundation.hmac_sha256_bytes (secret, a_input)
 			Result := base64_url_encode_bytes (l_hmac_bytes)
-		ensure
-			result_not_void: Result /= Void
 		end
 
 	base64_url_encode (a_input: STRING): STRING
@@ -556,7 +547,6 @@ feature {NONE} -- Implementation
 		do
 			Result := foundation.base64_url_encode (a_input)
 		ensure
-			result_not_void: Result /= Void
 			no_padding: not Result.has ('=')
 		end
 
@@ -573,8 +563,6 @@ feature {NONE} -- Implementation
 				l_str.append_character (b.item.to_character_8)
 			end
 			Result := foundation.base64_url_encode (l_str)
-		ensure
-			result_not_void: Result /= Void
 		end
 
 	base64_url_decode (a_input: STRING): STRING
@@ -583,8 +571,6 @@ feature {NONE} -- Implementation
 			input_not_void: a_input /= Void
 		do
 			Result := foundation.base64_url_decode (a_input)
-		ensure
-			result_not_void: Result /= Void
 		end
 
 	is_none_algorithm (a_alg: STRING): BOOLEAN
