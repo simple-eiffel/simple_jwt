@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="writer to generated expanded and indented JSON content."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2022, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_stream_expanded_writer_imp Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_stream_expanded_writer_imp_chart.html">Chart</a>
+<a class="nav class" href="json_stream_expanded_writer_imp_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_stream_expanded_writer_imp"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;writer to generated expanded and indented JSON content.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">deferred</span> <span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../json/json_stream_expanded_writer_imp_short.html">JSON_STREAM_EXPANDED_WRITER_IMP</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Initialization</span>
+
+	<a name="f_reset"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_reset">reset</a>
+			<span class="ecomment">--</span><span class="ecomment"> Reset writer</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Writing</span>
+
+	<a name="f_put_property_name"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_put_property_name">put_property_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_short.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Put a JSON property name </span><span class="equoted">a_name</span><span class="ecomment">.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Layout</span>
+
+	<a name="f_offset"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_offset">offset</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+
+	<a name="f_indentation"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_indentation">Indentation</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a> <span class="esymbol">=</span> &quot;  &quot;
+
+	<a name="f_indent"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_indent">indent</a>
+
+	<a name="f_exdent"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_exdent">exdent</a>
+		<span class="ekeyword">require</span>
+			<span class="etag">is_indented</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_offset">offset</a><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_ends_with">ends_with</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_indentation">Indentation</a><span class="esymbol">)</span>
+
+	<a name="f_output_separator"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_output_separator">output_separator</a>
+
+	<a name="f_on_enter_object"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_object">on_enter_object</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enter JSON object.</span>
+
+	<a name="f_leave_object"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_leave_object">leave_object</a>
+			<span class="ecomment">--</span><span class="ecomment"> End a JSON Object.	</span>
+
+	<a name="f_on_enter_array"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_array">on_enter_array</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enter JSON array.	</span>
+
+	<a name="f_leave_array"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_leave_array">leave_array</a>
+			<span class="ecomment">--</span><span class="ecomment"> End a JSON array.	</span>
+
+	<a name="f_on_enter_property"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_property">on_enter_property</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enter JSON property.</span>
+
+	<a name="f_on_enter_value"></a><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_value">on_enter_value</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enter JSON value.</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;2010-2022, Javier Velilla, Jocelyn Fiat, Eiffel Software and others </span><a class="estring" href="https://github.com/eiffelhub/json.">https://github.com/eiffelhub/json.</a><span class="estring">&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;</span><a class="estring" href="https://github.com/eiffelhub/json/blob/master/License.txt">https://github.com/eiffelhub/json/blob/master/License.txt</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../json/json_stream_expanded_writer_imp_short.html">JSON_STREAM_EXPANDED_WRITER_IMP</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_stream_expanded_writer_imp_chart.html">Chart</a>
+<a class="nav class" href="json_stream_expanded_writer_imp_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_stream_expanded_writer_imp"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

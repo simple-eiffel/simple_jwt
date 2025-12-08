@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTSimple JWT - JSON Web Token implementation for Eiffel.  TTSupports: TT- HS256 (HMAC-SHA256) algorithm TT- Standard claims (iss, sub, aud, exp, nbf, iat, jti) TT- Custom claims TT- Token creation and verification  TTJWT Structure: TTTheader.payload.signature TTT- Header: {alg:HS256,typ:JWT} (Base64URL) TTT- Payload: Claims JSON (Base64URL) TTT- Signature: HMAC-SHA256 of header.payload  TTSecurity Features: TT- Algorithm validation (prevents alg substitution attacks) TT- none algorithm rejection TT- Constant-time signature comparison (prevents timing attacks) TT- Clock skew tolerance for distributed systems TT- Audience validation TT- Not-before (nbf) validation  TTUsage: TTTcreate jwt.make (secret-key) TTTtoken := jwt.create_token (claims) TTTif jwt.verify_secure (token) then ...   -- Use verify_secure for production!"/>
+<meta name="author" content="Larry Rix"/>
+<meta name="eis" content="name=Documentation, src=../docs/index.html, protocol=URI, tag=documentation"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2024-2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>simple_jwt Relations</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="simple_jwt_chart.html">Chart</a>
+<span class="nav class selected">Relations</span>
+<a class="nav class" href="simple_jwt_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_jwt"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../src/simple_jwt_links.html">SIMPLE_JWT</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/any_links.html">ANY</a>
+
+<span class="ekeyword">Clients</span>
+	<a class="eclass" href="../src/simple_jwt_links.html">SIMPLE_JWT</a>
+
+<span class="ekeyword">Suppliers</span>
+	<a class="eclass" href="../base/array_links.html">ARRAY</a> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/array_iteration_cursor_links.html">ARRAY_ITERATION_CURSOR</a> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/boolean_links.html">BOOLEAN</a>
+	<a class="eclass" href="../base/character_8_links.html">CHARACTER_8</a>
+	<a class="eclass" href="../time/date_time_links.html">DATE_TIME</a>
+	<a class="eclass" href="../time/date_time_duration_links.html">DATE_TIME_DURATION</a>
+	<a class="eclass" href="../simple_foundation_api/foundation_links.html">FOUNDATION</a>
+	<a class="eclass" href="../base/integer_32_links.html">INTEGER_32</a>
+	<a class="eclass" href="../base/integer_64_links.html">INTEGER_64</a>
+	<a class="eclass" href="../base/iteration_cursor_links.html">ITERATION_CURSOR</a><span class="echar">*</span> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../json/json_array_links.html">JSON_ARRAY</a>
+	<a class="eclass" href="../json/json_number_links.html">JSON_NUMBER</a>
+	<a class="eclass" href="../json/json_object_links.html">JSON_OBJECT</a>
+	<a class="eclass" href="../json/json_parser_links.html">JSON_PARSER</a>
+	<a class="eclass" href="../json/json_string_links.html">JSON_STRING</a>
+	<a class="eclass" href="../base/list_links.html">LIST</a><span class="echar">*</span> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/natural_8_links.html">NATURAL_8</a>
+	<a class="eclass" href="../src/simple_jwt_links.html">SIMPLE_JWT</a>
+	<a class="eclass" href="../base/string_8_links.html">STRING_8</a>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="simple_jwt_chart.html">Chart</a>
+<span class="nav class selected">Relations</span>
+<a class="nav class" href="simple_jwt_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_jwt"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTJSON Path evaluation  TTSee: - https://tools.ietf.org/id/draft-goessner-dispatch-jsonpath-00.html TTT - https://goessner.net/articles/JsonPath/ TTT - for future: eventually https://github.com/JSONPath-Plus/JSONPath  TTT$Tthe root object/element TTT@Tthe current object/element TTTTnote: only first item by name  @.name  TTT. or []Tchild operator TTT..Tnested descendants. JSONPath borrows this syntax from E4X. TTT*Twildcard. All objects/elements regardless their names.  TTT[]Tsubscript operator. XPath uses it to iterate over element collections and for predicates. In Javascript and JSON it is the native array operator. TTT[,]TUnion operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set. TTT[start:end:step]Tarray slice operator borrowed from ES4.  TTT?()Tapplies a filter (script) expression. TTTTsupport for has item by name: ?(@.name) TTTTand basic >, >=, <, <=, =, /=  operators on string and number.: ?(@.value<10)  TTT()Tscript expression, using the underlying script engine. TTTTNOT YET SUPPORTED:"/>
+<meta name="author" content="Jocelyn FIAT <jfiat@eiffel.com>"/>
+<meta name="eis" content="name=JSON Path, protocol=URI, src=https://goessner.net/articles/JsonPath/"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2022, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="maintainer" content="Jocelyn Fiat, Eiffel Software"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_path Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_path_chart.html">Chart</a>
+<a class="nav class" href="json_path_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_path"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">		JSON Path evaluation</span>
+		
+		<span class="estring">		See: - </span><a class="estring" href="https://tools.ietf.org/id/draft-goessner-dispatch-jsonpath-00.html">https://tools.ietf.org/id/draft-goessner-dispatch-jsonpath-00.html</a>
+		<span class="estring">			 - </span><a class="estring" href="https://goessner.net/articles/JsonPath/">https://goessner.net/articles/JsonPath/</a>
+		<span class="estring">			 - for future: eventually </span><a class="estring" href="https://github.com/JSONPath-Plus/JSONPath">https://github.com/JSONPath-Plus/JSONPath</a>
+		
+		<span class="estring">			$	the root object/element</span>
+		<span class="estring">			@	the current object/element</span>
+		<span class="estring">				note: only first item by name &nbsp;@.name</span>
+		
+		<span class="estring">			. or []	child operator</span>
+		<span class="estring">			..	nested descendants. JSONPath borrows this syntax from E4X.</span>
+		<span class="estring">			*	wildcard. All objects/elements regardless their names.</span>
+		
+		<span class="estring">			[]	subscript operator. XPath uses it to iterate over element collections and for predicates. In Javascript and JSON it is the native array operator.</span>
+		<span class="estring">			</span><span class="estring">[,]</span><span class="estring">	Union operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set.</span>
+		<span class="estring">			</span><span class="estring">[start:end:step]</span><span class="estring">	array slice operator borrowed from ES4.</span>
+		
+		<span class="estring">			?()	applies a filter (script) expression.</span>
+		<span class="estring">				support for has item by name: ?(@.name)</span>
+		<span class="estring">				and basic &gt;, &gt;=, &lt;, &lt;=, =, /= &nbsp;operators on string and number.: ?(@.value&lt;10)</span>
+		
+		<span class="estring">			()	script expression, using the underlying script engine.</span>
+		<span class="estring">				NOT YET SUPPORTED:</span>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">author</span><span class="esymbol">:</span> <span class="estring">&quot;Jocelyn FIAT &lt;</span><a class="estring" href="mailto:jfiat@eiffel.com>"">jfiat@eiffel.com&gt;&quot;</a>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=JSON Path&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;protocol=URI&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=</span><a class="estring" href="https://goessner.net/articles/JsonPath/">https://goessner.net/articles/JsonPath/</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">expanded</span> <span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../json/json_path_short.html">JSON_PATH</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../json/json_path_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings</span>
+
+	<a name="f_zero_based_index"></a><a class="efeature" href="../json/json_path_short.html#f_zero_based_index">zero_based_index</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Index in JSON path start at 0 ?</span>
+			<span class="ecomment">--</span><span class="ecomment"> note: If False: 1-based, as in Eiffel</span>
+			<span class="ecomment">--</span><span class="ecomment"> WARNING: this is not the standard JSON PATH spec!</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings change</span>
+
+	<a name="f_set_zero_based_index"></a><a class="efeature" href="../json/json_path_short.html#f_set_zero_based_index">set_zero_based_index</a> <span class="esymbol">(</span><span class="elocal">b</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Execution</span>
+
+	<a name="f_matches"></a><a class="efeature" href="../json/json_path_short.html#f_matches">matches</a> <span class="esymbol">(</span><span class="elocal">a_json_value</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_json_path_expression</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_short.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_array_short.html">JSON_ARRAY</a>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;2010-2022, Javier Velilla, Jocelyn Fiat, Eiffel Software and others </span><a class="estring" href="https://github.com/eiffelhub/json.">https://github.com/eiffelhub/json.</a><span class="estring">&quot;</span>
+	<span class="eitag">maintainer</span><span class="esymbol">:</span> <span class="estring">&quot;Jocelyn Fiat, Eiffel Software&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;</span><a class="estring" href="https://github.com/eiffelhub/json/blob/master/License.txt">https://github.com/eiffelhub/json/blob/master/License.txt</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../json/json_path_short.html">JSON_PATH</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_path_chart.html">Chart</a>
+<a class="nav class" href="json_path_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_path"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

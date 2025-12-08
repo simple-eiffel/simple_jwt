@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Summary description for {JSON_STREAM_TEXT_WRITER}."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2022, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_stream_text_expanded_writer Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_stream_text_expanded_writer_links.html">Relations</a>
+<a class="nav class" href="json_stream_text_expanded_writer_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_stream_text_expanded_writer"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../json/json_stream_text_expanded_writer_chart.html">JSON_STREAM_TEXT_EXPANDED_WRITER</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">json_utility</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Summary description for </span><span class="esymbol">{</span><a class="eclass" href="../json/json_stream_text_writer_chart.html">JSON_STREAM_TEXT_WRITER</a><span class="esymbol">}</span><span class="estring">.&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_stream_text_expanded_writer_short.html#f_make_with_text">make_with_text</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../json/json_stream_expanded_writer_imp_chart.html">JSON_STREAM_EXPANDED_WRITER_IMP</a><span class="echar">*</span>
+	<a class="eclass" href="../json/json_stream_writer_chart.html">JSON_STREAM_WRITER</a><span class="echar">*</span>
+
+<span class="ekeyword">Queries</span>
+	<span title="`active_count' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_active_count">active_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`active_is_array' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_active_is_array">active_is_array</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`active_is_empty' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_active_is_empty">active_is_empty</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`active_is_object' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_active_is_object">active_is_object</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`active_is_property' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_active_is_property">active_is_property</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`indentation' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_indentation">Indentation</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`offset' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_offset">offset</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`enter_array' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_enter_array">enter_array</a></span>
+	<span title="`enter_object' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_enter_object">enter_object</a></span>
+	<span title="`exdent' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_exdent">exdent</a></span>
+	<span title="`indent' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_indent">indent</a></span>
+	<span title="`leave' was declared in JSON_STREAM_WRITER"><a class="efeature" href="../json/json_stream_writer_short.html#f_leave">leave</a></span>
+	<span title="`leave_array' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_leave_array">leave_array</a></span>
+	<span title="`leave_object' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_leave_object">leave_object</a></span>
+	<span title="`on_enter_array' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_array">on_enter_array</a></span>
+	<span title="`on_enter_object' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_object">on_enter_object</a></span>
+	<span title="`on_enter_property' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_property">on_enter_property</a></span>
+	<span title="`on_enter_value' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_on_enter_value">on_enter_value</a></span>
+	<span title="`output_separator' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_output_separator">output_separator</a></span>
+	<span title="`put_boolean_value' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_put_boolean_value">put_boolean_value</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">)</span></span>
+	<span title="`put_integer_64_value' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_put_integer_64_value">put_integer_64_value</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_chart.html">INTEGER_64</a><span class="esymbol">)</span></span>
+	<span title="`put_null_value' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_put_null_value">put_null_value</a></span>
+	<span title="`put_property_name' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_put_property_name">put_property_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`put_real_64_value' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_put_real_64_value">put_real_64_value</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_chart.html">REAL_64</a><span class="esymbol">)</span></span>
+	<span title="`put_string_value' was declared in JSON_STREAM_WRITER_IMP"><a class="efeature" href="../json/json_stream_writer_imp_short.html#f_put_string_value">put_string_value</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`reset' was declared in JSON_STREAM_EXPANDED_WRITER_IMP"><a class="efeature" href="../json/json_stream_expanded_writer_imp_short.html#f_reset">reset</a></span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_stream_text_expanded_writer_links.html">Relations</a>
+<a class="nav class" href="json_stream_text_expanded_writer_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_stream_text_expanded_writer"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Utility interface to use JSON (de)serialization."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2016, Javier Velilla and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_serialization Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_serialization_chart.html">Chart</a>
+<a class="nav class" href="json_serialization_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_serialization"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Utility interface to use JSON (de)serialization.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../json/json_serialization_short.html">JSON_SERIALIZATION</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../json/json_serialization_short.html#f_default_create">default_create</a><span class="esymbol">,</span>
+	<a class="efeature" href="../json/json_serialization_short.html#f_make_with_context">make_with_context</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_context"></a><a class="efeature" href="../json/json_serialization_short.html#f_context">context</a><span class="esymbol">:</span> <a class="eclass" href="../json/json_serialization_context_short.html">JSON_SERIALIZATION_CONTEXT</a>
+			<span class="ecomment">--</span><span class="ecomment"> Context related to serialization and deserialization.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status</span>
+
+	<a name="f_has_deserialization_error"></a><a class="efeature" href="../json/json_serialization_short.html#f_has_deserialization_error">has_deserialization_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Error occurred during deserialization?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_set_pretty_printing"></a><a class="efeature" href="../json/json_serialization_short.html#f_set_pretty_printing">set_pretty_printing</a>
+			<span class="ecomment">--</span><span class="ecomment"> Generate pretty indented JSON for </span><span class="ecomment">`</span><a class="efeature" href="../json/json_serialization_short.html#f_to_json_string">to_json_string</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_set_compact_printing"></a><a class="efeature" href="../json/json_serialization_short.html#f_set_compact_printing">set_compact_printing</a>
+			<span class="ecomment">--</span><span class="ecomment"> Generate compact JSON for </span><span class="ecomment">`</span><a class="efeature" href="../json/json_serialization_short.html#f_to_json_string">to_json_string</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_register"></a><a class="efeature" href="../json/json_serialization_short.html#f_register">register</a> <span class="esymbol">(</span><span class="elocal">a_serialization</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_serialization_i_short.html">JSON_SERIALIZATION_I</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/type_short.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span>
+
+	<a name="f_register_default"></a><a class="efeature" href="../json/json_serialization_short.html#f_register_default">register_default</a> <span class="esymbol">(</span><span class="elocal">a_serialization</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_serialization_i_short.html">JSON_SERIALIZATION_I</a><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Cleaning</span>
+
+	<a name="f_reset"></a><a class="efeature" href="../json/json_serialization_short.html#f_reset">reset</a>
+			<span class="ecomment">--</span><span class="ecomment"> Clean temporary data if relevant.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Conversion to JSON</span>
+
+	<a name="f_to_json"></a><a class="efeature" href="../json/json_serialization_short.html#f_to_json">to_json</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a>
+
+	<a name="f_append_to_json_string"></a><a class="efeature" href="../json/json_serialization_short.html#f_append_to_json_string">append_to_json_string</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">;</span> <span class="elocal">a_output</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_general_short.html">STRING_GENERAL</a><span class="esymbol">)</span>
+
+	<a name="f_to_json_string"></a><a class="efeature" href="../json/json_serialization_short.html#f_to_json_string">to_json_string</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Conversion from JSON		</span>
+
+	<a name="f_from_json"></a><a class="efeature" href="../json/json_serialization_short.html#f_from_json">from_json</a> <span class="esymbol">(</span><span class="elocal">a_json</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/type_short.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a>
+
+	<a name="f_from_json_string"></a><a class="efeature" href="../json/json_serialization_short.html#f_from_json_string">from_json_string</a> <span class="esymbol">(</span><span class="elocal">a_json_string</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/type_short.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Helper</span>
+
+	<a name="f_append_json_to_string"></a><a class="efeature" href="../json/json_serialization_short.html#f_append_json_to_string">append_json_to_string</a> <span class="esymbol">(</span><span class="elocal">a_json</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_output</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_general_short.html">STRING_GENERAL</a><span class="esymbol">)</span>
+
+	<a name="f_json_from_string"></a><a class="efeature" href="../json/json_serialization_short.html#f_json_from_string">json_from_string</a> <span class="esymbol">(</span><span class="elocal">a_json_string</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;2010-2016, Javier Velilla and others </span><a class="estring" href="https://github.com/eiffelhub/json.">https://github.com/eiffelhub/json.</a><span class="estring">&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;</span><a class="estring" href="https://github.com/eiffelhub/json/blob/master/License.txt">https://github.com/eiffelhub/json/blob/master/License.txt</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../json/json_serialization_short.html">JSON_SERIALIZATION</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_serialization_chart.html">Chart</a>
+<a class="nav class" href="json_serialization_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_serialization"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

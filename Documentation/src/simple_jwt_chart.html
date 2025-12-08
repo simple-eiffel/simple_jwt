@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTSimple JWT - JSON Web Token implementation for Eiffel.  TTSupports: TT- HS256 (HMAC-SHA256) algorithm TT- Standard claims (iss, sub, aud, exp, nbf, iat, jti) TT- Custom claims TT- Token creation and verification  TTJWT Structure: TTTheader.payload.signature TTT- Header: {alg:HS256,typ:JWT} (Base64URL) TTT- Payload: Claims JSON (Base64URL) TTT- Signature: HMAC-SHA256 of header.payload  TTSecurity Features: TT- Algorithm validation (prevents alg substitution attacks) TT- none algorithm rejection TT- Constant-time signature comparison (prevents timing attacks) TT- Clock skew tolerance for distributed systems TT- Audience validation TT- Not-before (nbf) validation  TTUsage: TTTcreate jwt.make (secret-key) TTTtoken := jwt.create_token (claims) TTTif jwt.verify_secure (token) then ...   -- Use verify_secure for production!"/>
+<meta name="author" content="Larry Rix"/>
+<meta name="eis" content="name=Documentation, src=../docs/index.html, protocol=URI, tag=documentation"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2024-2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>simple_jwt Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="simple_jwt_links.html">Relations</a>
+<a class="nav class" href="simple_jwt_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_jwt"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../src/simple_jwt_chart.html">SIMPLE_JWT</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <a class="ecluster" href="../src/index.html">src</a>
+	<span class="eitag">description</span><span class="esymbol">:</span> 
+		<span class="estring">&quot;Simple JWT - JSON Web Token implementation for Eiffel.</span>
+		
+		<span class="estring">Supports:</span>
+		<span class="estring">- HS256 (HMAC-SHA256) algorithm</span>
+		<span class="estring">- Standard claims (iss, sub, aud, exp, nbf, iat, jti)</span>
+		<span class="estring">- Custom claims</span>
+		<span class="estring">- Token creation and verification</span>
+		
+		<span class="estring">JWT Structure:</span>
+		<span class="estring">header.payload.signature</span>
+		<span class="estring">- Header: {%&quot;alg%&quot;:%&quot;HS256%&quot;,%&quot;typ%&quot;:%&quot;JWT%&quot;} (Base64URL)</span>
+		<span class="estring">- Payload: Claims JSON (Base64URL)</span>
+		<span class="estring">- Signature: HMAC-SHA256 of header.payload</span>
+		
+		<span class="estring">Security Features:</span>
+		<span class="estring">- Algorithm validation (prevents alg substitution attacks)</span>
+		<span class="estring">- %&quot;none%&quot; algorithm rejection</span>
+		<span class="estring">- Constant-time signature comparison (prevents timing attacks)</span>
+		<span class="estring">- Clock skew tolerance for distributed systems</span>
+		<span class="estring">- Audience validation</span>
+		<span class="estring">- Not-before (nbf) validation</span>
+		
+		<span class="estring">Usage:</span>
+		<span class="estring">create jwt.make (%&quot;secret-key%&quot;)</span>
+		<span class="estring">token := jwt.create_token (claims)</span>
+		<span class="estring">if jwt.verify_secure (token) then ... &nbsp;&nbsp;-- Use verify_secure for production!&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../src/simple_jwt_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/any_chart.html">ANY</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`clock_skew' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_clock_skew">clock_skew</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`create_token' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_create_token">create_token</a> <span class="esymbol">(</span><span class="elocal">a_claims</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`create_token_with_claims' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_create_token_with_claims">create_token_with_claims</a> <span class="esymbol">(</span><span class="elocal">a_subject</span><span class="esymbol">,</span> <span class="elocal">a_issuer</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_expiration_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a><span class="esymbol">;</span> <span class="elocal">a_custom_claims</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`create_token_with_jti' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_create_token_with_jti">create_token_with_jti</a> <span class="esymbol">(</span><span class="elocal">a_claims</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`decode_claims' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_decode_claims">decode_claims</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a></span>
+	<span title="`decode_header' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_decode_header">decode_header</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a></span>
+	<span title="`extract_header' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_extract_header">extract_header</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`extract_payload' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_extract_payload">extract_payload</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`extract_signature' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_extract_signature">extract_signature</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`get_claim' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_get_claim">get_claim</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">,</span> <span class="elocal">a_claim_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a></span>
+	<span title="`get_integer_claim' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_get_integer_claim">get_integer_claim</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">,</span> <span class="elocal">a_claim_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_chart.html">INTEGER_64</a></span>
+	<span title="`get_string_claim' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_get_string_claim">get_string_claim</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">,</span> <span class="elocal">a_claim_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`is_expired' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_is_expired">is_expired</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify">verify</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify_full' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify_full">verify_full</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_expected_audience</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify_nbf' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify_nbf">verify_nbf</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify_secure' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify_secure">verify_secure</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify_with_algorithm' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify_with_algorithm">verify_with_algorithm</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">,</span> <span class="elocal">a_allowed_algorithm</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify_with_audience' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify_with_audience">verify_with_audience</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">,</span> <span class="elocal">a_expected_audience</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`verify_with_expiration' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_verify_with_expiration">verify_with_expiration</a> <span class="esymbol">(</span><span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`set_clock_skew' is declared in `Current'"><a class="efeature" href="../src/simple_jwt_short.html#f_set_clock_skew">set_clock_skew</a> <span class="esymbol">(</span><span class="elocal">a_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a><span class="esymbol">)</span></span>
+
+<span class="ekeyword">Constraints</span>
+	<span class="etag">secret exists</span>
+	<span class="etag">secret not empty</span>
+	<span class="etag">algorithm set</span>
+	<span class="etag">foundation exists</span>
+	<span class="etag">clock skew non negative</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="simple_jwt_links.html">Relations</a>
+<a class="nav class" href="simple_jwt_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_jwt"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

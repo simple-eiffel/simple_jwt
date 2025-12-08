@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Context for the deserialization."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2024, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_deserializer_context Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_deserializer_context_links.html">Relations</a>
+<a class="nav class" href="json_deserializer_context_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_deserializer_context"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../json/json_deserializer_context_chart.html">JSON_DESERIALIZER_CONTEXT</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">json_serialization</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Context for the deserialization.&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_deserializer_context_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../json/json_serialization_context_i_chart.html">JSON_SERIALIZATION_CONTEXT_I</a><span class="echar">*</span>
+
+<span class="ekeyword">Queries</span>
+	<span title="`default_deserializer' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_default_deserializer">default_deserializer</a><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">like</span> <a class="efeature" href="../json/json_deserializer_context_short.html#f_deserializer">deserializer</a><span class="esymbol">]</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_deserializer_chart.html">JSON_DESERIALIZER</a></span>
+	<span title="`deserializer' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_deserializer">deserializer</a> <span class="esymbol">(</span><span class="elocal">a_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/type_chart.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_deserializer_chart.html">JSON_DESERIALIZER</a></span>
+	<span title="`deserializer_location' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_deserializer_location">deserializer_location</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+	<span title="`error' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_error">error</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_deserializer_error_chart.html">JSON_DESERIALIZER_ERROR</a></span>
+	<span title="`has_error' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_has_error">has_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_type_name_included' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_is_type_name_included">is_type_name_included</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`last_feature_name' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_last_feature_name">last_feature_name</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a></span>
+	<span title="`last_object' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_last_object">last_object</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a></span>
+	<span title="`type_field_name' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_type_field_name">type_field_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`value_creation_callback' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_value_creation_callback">value_creation_callback</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_deserializer_creation_callback_chart.html">JSON_DESERIALIZER_CREATION_CALLBACK</a></span>
+	<span title="`value_from_json' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_value_from_json">value_from_json</a> <span class="esymbol">(</span><span class="elocal">a_json</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/type_chart.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`on_deserialization_field_end' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_on_deserialization_field_end">on_deserialization_field_end</a> <span class="esymbol">(</span><span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">;</span> <span class="elocal">a_field_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`on_deserialization_field_start' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_on_deserialization_field_start">on_deserialization_field_start</a> <span class="esymbol">(</span><span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">;</span> <span class="elocal">a_field_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`on_object' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_on_object">on_object</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">;</span> <span class="elocal">a_json_object</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a><span class="esymbol">)</span></span>
+	<span title="`on_value_creation' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_on_value_creation">on_value_creation</a> <span class="esymbol">(</span><span class="elocal">a_value_info</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_deserializer_creation_information_chart.html">JSON_DESERIALIZER_CREATION_INFORMATION</a><span class="esymbol">)</span></span>
+	<span title="`on_value_skipped' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_on_value_skipped">on_value_skipped</a> <span class="esymbol">(</span><span class="elocal">a_json</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/type_chart.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">]</span><span class="esymbol">;</span> <span class="elocal">a_message</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`register_deserializer' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_register_deserializer">register_deserializer</a> <span class="esymbol">(</span><span class="elocal">conv</span><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">attached</span> <span class="ekeyword">like</span> <a class="efeature" href="../json/json_deserializer_context_short.html#f_deserializer">deserializer</a><span class="esymbol">]</span> <span class="ekeyword">attached</span> <a class="eclass" href="../json/json_deserializer_chart.html">JSON_DESERIALIZER</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/type_chart.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`report_error' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_report_error">report_error</a> <span class="esymbol">(</span><span class="elocal">e</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_deserializer_error_chart.html">JSON_DESERIALIZER_ERROR</a><span class="esymbol">)</span></span>
+	<span title="`reset' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_reset">reset</a></span>
+	<span title="`reset_error' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_reset_error">reset_error</a></span>
+	<span title="`set_default_deserializer' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_set_default_deserializer">set_default_deserializer</a> <span class="esymbol">(</span><span class="elocal">conv</span><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">like</span> <a class="efeature" href="../json/json_deserializer_context_short.html#f_default_deserializer">default_deserializer</a><span class="esymbol">]</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_deserializer_chart.html">JSON_DESERIALIZER</a><span class="esymbol">)</span></span>
+	<span title="`set_is_type_name_included' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_set_is_type_name_included">set_is_type_name_included</a> <span class="esymbol">(</span><span class="elocal">b</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">)</span></span>
+	<span title="`set_type_field_name' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_set_type_field_name">set_type_field_name</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_value_creation_callback' is declared in `Current'"><a class="efeature" href="../json/json_deserializer_context_short.html#f_set_value_creation_callback">set_value_creation_callback</a> <span class="esymbol">(</span><span class="elocal">cb</span><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">like</span> <a class="efeature" href="../json/json_deserializer_context_short.html#f_value_creation_callback">value_creation_callback</a><span class="esymbol">]</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_deserializer_creation_callback_chart.html">JSON_DESERIALIZER_CREATION_CALLBACK</a><span class="esymbol">)</span></span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_deserializer_context_links.html">Relations</a>
+<a class="nav class" href="json_deserializer_context_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_deserializer_context"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Token used by the JSON_PARSER"/>
+<meta name="author" content="$Author$"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2014, Javier Velilla and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_tokens Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_tokens_chart.html">Chart</a>
+<a class="nav class" href="json_tokens_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_tokens"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Token used by the JSON_PARSER&quot;</span>
+	<span class="eitag">author</span><span class="esymbol">:</span> <span class="estring">&quot;$Author$&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../json/json_tokens_short.html">JSON_TOKENS</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../base/any_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_token_object_open"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_object_open">Token_object_open</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'{'</span>
+
+	<a name="f_token_object_close"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_object_close">Token_object_close</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'}'</span>
+
+	<a name="f_token_array_open"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_array_open">Token_array_open</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'['</span>
+
+	<a name="f_token_array_close"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_array_close">Token_array_close</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">']'</span>
+
+	<a name="f_token_double_quote"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_double_quote">Token_double_quote</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'&quot;'</span>
+
+	<a name="f_token_plus"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_plus">Token_plus</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'+'</span>
+
+	<a name="f_token_minus"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_minus">Token_minus</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'-'</span>
+
+	<a name="f_token_dot"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_dot">Token_dot</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'.'</span>
+
+	<a name="f_token_exp"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_exp">Token_exp</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">'e'</span>
+
+	<a name="f_token_comma"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_comma">Token_comma</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">','</span>
+
+	<a name="f_token_colon"></a><a class="efeature" href="../json/json_tokens_short.html#f_token_colon">Token_colon</a><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a> <span class="esymbol">=</span> <span class="echar">':'</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status report</span>
+
+	<a name="f_is_open_token"></a><a class="efeature" href="../json/json_tokens_short.html#f_is_open_token">is_open_token</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Characters which open a type	</span>
+
+	<a name="f_is_close_token"></a><a class="efeature" href="../json/json_tokens_short.html#f_is_close_token">is_close_token</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Characters which close a type	</span>
+
+	<a name="f_is_special_character"></a><a class="efeature" href="../json/json_tokens_short.html#f_is_special_character">is_special_character</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Control Characters</span>
+			<span class="ecomment">--</span><span class="ecomment"> 	%F &nbsp;	Form feed</span>
+			<span class="ecomment">--</span><span class="ecomment"> 	%H &nbsp;	backslasH</span>
+			<span class="ecomment">--</span><span class="ecomment"> &nbsp;%N &nbsp;	Newline</span>
+			<span class="ecomment">--</span><span class="ecomment"> &nbsp;%R &nbsp;	carriage Return</span>
+			<span class="ecomment">--</span><span class="ecomment"> &nbsp;%T &nbsp;	horizontal Tab</span>
+			<span class="ecomment">--</span><span class="ecomment"> &nbsp;%B &nbsp;	Backspace</span>
+			<span class="ecomment">--</span><span class="ecomment"> &nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solidus</span>
+			<span class="ecomment">--</span><span class="ecomment"> &nbsp;&quot; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quotation	</span>
+
+	<a name="f_is_special_control"></a><a class="efeature" href="../json/json_tokens_short.html#f_is_special_control">is_special_control</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Control Characters</span>
+			<span class="ecomment">--</span><span class="ecomment"> \b\f\n\r\t</span>
+
+	<a name="f_is_exp_token"></a><a class="efeature" href="../json/json_tokens_short.html#f_is_exp_token">is_exp_token</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/character_8_short.html">CHARACTER_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is number exposant token?</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;2010-2014, Javier Velilla and others </span><a class="estring" href="https://github.com/eiffelhub/json.">https://github.com/eiffelhub/json.</a><span class="estring">&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;</span><a class="estring" href="https://github.com/eiffelhub/json/blob/master/License.txt">https://github.com/eiffelhub/json/blob/master/License.txt</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../json/json_tokens_short.html">JSON_TOKENS</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_tokens_chart.html">Chart</a>
+<a class="nav class" href="json_tokens_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_tokens"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

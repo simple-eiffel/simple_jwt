@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Context for JSON serialization."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2016-2016, Jocelyn Fiat and Eiffel Software"/>
+<meta name="license" content="Eiffel Forum License v2 (see https://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_serializer_context_with_reference Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_serializer_context_with_reference_chart.html">Chart</a>
+<a class="nav class" href="json_serializer_context_with_reference_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_serializer_context_with_reference"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Context for JSON serialization.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../json/json_serializer_context_with_reference_short.html">JSON_SERIALIZER_CONTEXT_WITH_REFERENCE</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings</span>
+
+	<a name="f_using_verbose_reference_identifier"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_using_verbose_reference_identifier">using_verbose_reference_identifier</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Using verbose longer identifier for the reference values.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Default: False</span>
+
+	<a name="f_reference_target_field_name"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_reference_target_field_name">reference_target_field_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a> <span class="ekeyword">assign</span> <a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_set_reference_target_field_name">set_reference_target_field_name</a>
+			<span class="ecomment">--</span><span class="ecomment"> Field name related to reference.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Default: $REF</span>
+
+	<a name="f_reference_source_field_name"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_reference_source_field_name">reference_source_field_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a> <span class="ekeyword">assign</span> <a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_set_reference_source_field_name">set_reference_source_field_name</a>
+			<span class="ecomment">--</span><span class="ecomment"> Field name related to reference identifier.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Default: $REF#	</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings change</span>
+
+	<a name="f_use_verbose_reference_identifier"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_use_verbose_reference_identifier">use_verbose_reference_identifier</a>
+			<span class="ecomment">--</span><span class="ecomment"> Use long verbose identifier for reference.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Useful for debugging.</span>
+
+	<a name="f_use_shortest_reference_identifier"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_use_shortest_reference_identifier">use_shortest_reference_identifier</a>
+			<span class="ecomment">--</span><span class="ecomment"> Use shortest identifier for reference (based on an integer counter).</span>
+
+	<a name="f_set_reference_target_field_name"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_set_reference_target_field_name">set_reference_target_field_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+
+	<a name="f_set_reference_source_field_name"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_set_reference_source_field_name">set_reference_source_field_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status</span>
+
+	<a name="f_is_accepted_object"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_is_accepted_object">is_accepted_object</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is </span><span class="equoted">obj</span><span class="ecomment"> accepted for serialization?</span>
+			<span class="ecomment">--</span><span class="ecomment"> ie: when cycle are forbidden, it should be recursively expanded.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Cleaning</span>
+
+	<a name="f_reset"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_reset">reset</a>
+			<span class="ecomment">--</span><span class="ecomment"> Clean any temporary data, to release memory or reset computation.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Callback events		</span>
+
+	<a name="f_on_object_serialization_start"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_on_object_serialization_start">on_object_serialization_start</a> <span class="esymbol">(</span><span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Event triggered just before processing object </span><span class="equoted">a_obj</span><span class="ecomment">.</span>
+
+	<a name="f_on_object_serialization_end"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_on_object_serialization_end">on_object_serialization_end</a> <span class="esymbol">(</span><span class="elocal">j_value</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Event triggered just after having object </span><span class="equoted">a_obj</span><span class="ecomment"> processed with associated </span><span class="equoted">j_value</span><span class="ecomment"> json value..</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> References		</span>
+
+	<a name="f_record_reference"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_record_reference">record_reference</a> <span class="esymbol">(</span><span class="elocal">j_value</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Record json value </span><span class="equoted">j_value</span><span class="ecomment"> for object </span><span class="equoted">a_obj</span>
+			<span class="ecomment">--</span><span class="ecomment"> and associate with a reference identifier computed internally.</span>
+
+	<a name="f_recorded_json_value"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_recorded_json_value">recorded_json_value</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_short.html">JSON_OBJECT</a>
+			<span class="ecomment">--</span><span class="ecomment"> JSON value representing the reference </span><span class="equoted">obj</span><span class="ecomment"> if already recorded.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Helpers</span>
+
+	<a name="f_to_json"></a><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_to_json">to_json</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">;</span> <span class="elocal">a_caller_serializer</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_serializer_short.html">JSON_SERIALIZER</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a>
+			<span class="ecomment">--</span><span class="ecomment"> JSON value from </span><span class="equoted">obj</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> To avoid infinite recursion, be sure to not reuse the same serializer as </span><span class="equoted">a_caller_serializer</span><span class="ecomment">.			</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;2016-2016, Jocelyn Fiat and Eiffel Software&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="https://www.eiffel.com/licensing/forum.txt">https://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../json/json_serializer_context_with_reference_short.html">JSON_SERIALIZER_CONTEXT_WITH_REFERENCE</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_serializer_context_with_reference_chart.html">Chart</a>
+<a class="nav class" href="json_serializer_context_with_reference_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_serializer_context_with_reference"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

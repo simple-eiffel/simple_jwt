@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="JSON deserializer based on reflection mechanism."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2024, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_reflector_deserializer Relations</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_reflector_deserializer_chart.html">Chart</a>
+<span class="nav class selected">Relations</span>
+<a class="nav class" href="json_reflector_deserializer_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_reflector_deserializer"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../json/json_reflector_deserializer_links.html">JSON_REFLECTOR_DESERIALIZER</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../json/json_core_deserializer_links.html">JSON_CORE_DESERIALIZER</a>
+	<a class="eclass" href="../json/json_type_utilities_links.html">JSON_TYPE_UTILITIES</a>
+
+<span class="ekeyword">Descendants</span>
+	<a class="eclass" href="../json/json_reflector_serialization_links.html">JSON_REFLECTOR_SERIALIZATION</a>
+
+<span class="ekeyword">Clients</span>
+	<a class="eclass" href="../json/json_reflector_deserializer_links.html">JSON_REFLECTOR_DESERIALIZER</a>
+
+<span class="ekeyword">Suppliers</span>
+	<a class="eclass" href="../base/any_links.html">ANY</a>
+	<a class="eclass" href="../base/array_links.html">ARRAY</a> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/boolean_links.html">BOOLEAN</a>
+	<a class="eclass" href="../base/character_8_links.html">CHARACTER_8</a>
+	<a class="eclass" href="../base/integer_32_links.html">INTEGER_32</a>
+	<a class="eclass" href="../base/integer_64_links.html">INTEGER_64</a>
+	<a class="eclass" href="../base/iteration_cursor_links.html">ITERATION_CURSOR</a><span class="echar">*</span> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../json/json_array_links.html">JSON_ARRAY</a>
+	<a class="eclass" href="../json/json_deserializer_links.html">JSON_DESERIALIZER</a><span class="echar">*</span>
+	<a class="eclass" href="../json/json_deserializer_context_links.html">JSON_DESERIALIZER_CONTEXT</a>
+	<a class="eclass" href="../json/json_deserializer_creation_information_links.html">JSON_DESERIALIZER_CREATION_INFORMATION</a>
+	<a class="eclass" href="../json/json_object_links.html">JSON_OBJECT</a>
+	<a class="eclass" href="../json/json_reflector_deserializer_links.html">JSON_REFLECTOR_DESERIALIZER</a>
+	<a class="eclass" href="../json/json_string_links.html">JSON_STRING</a>
+	<a class="eclass" href="../base/list_links.html">LIST</a><span class="echar">*</span> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/natural_64_links.html">NATURAL_64</a>
+	<a class="eclass" href="../base/procedure_links.html">PROCEDURE</a> <span class="esymbol">[</span><span class="egeneric">OPEN_ARGS</span> <span class="esymbol">-&gt;</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/tuple_links.html">TUPLE</a> <span class="ekeyword">create</span> <a class="efeature" href="../base/any_short.html#f_default_create">default_create</a> <span class="ekeyword">end</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/readable_string_general_links.html">READABLE_STRING_GENERAL</a><span class="echar">*</span>
+	<a class="eclass" href="../base/real_64_links.html">REAL_64</a>
+	<a class="eclass" href="../base/reflected_object_links.html">REFLECTED_OBJECT</a><span class="echar">*</span>
+	<a class="eclass" href="../base/reflected_reference_object_links.html">REFLECTED_REFERENCE_OBJECT</a>
+	<a class="eclass" href="../base/special_links.html">SPECIAL</a> <span class="esymbol">[</span><span class="egeneric">T</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/string_32_links.html">STRING_32</a>
+	<a class="eclass" href="../base/string_8_links.html">STRING_8</a>
+	<a class="eclass" href="../base/string_table_links.html">STRING_TABLE</a> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/table_iteration_cursor_links.html">TABLE_ITERATION_CURSOR</a><span class="echar">*</span> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">,</span> <span class="egeneric">K</span><span class="esymbol">]</span>
+	<a class="eclass" href="../base/type_links.html">TYPE</a> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">]</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_reflector_deserializer_chart.html">Chart</a>
+<span class="nav class selected">Relations</span>
+<a class="nav class" href="json_reflector_deserializer_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_reflector_deserializer"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

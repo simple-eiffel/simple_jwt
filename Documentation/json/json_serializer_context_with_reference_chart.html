@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Context for JSON serialization."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2016-2016, Jocelyn Fiat and Eiffel Software"/>
+<meta name="license" content="Eiffel Forum License v2 (see https://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_serializer_context_with_reference Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_serializer_context_with_reference_links.html">Relations</a>
+<a class="nav class" href="json_serializer_context_with_reference_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_serializer_context_with_reference"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../json/json_serializer_context_with_reference_chart.html">JSON_SERIALIZER_CONTEXT_WITH_REFERENCE</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">json_serialization</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Context for JSON serialization.&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../json/json_serializer_context_chart.html">JSON_SERIALIZER_CONTEXT</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`default_serializer' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_default_serializer">default_serializer</a><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">like</span> <a class="efeature" href="../json/json_serializer_context_short.html#f_serializer">serializer</a><span class="esymbol">]</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_serializer_chart.html">JSON_SERIALIZER</a></span>
+	<span title="`is_accepted_object' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_is_accepted_object">is_accepted_object</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_compact_printing' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_is_compact_printing">is_compact_printing</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_pretty_printing' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_is_pretty_printing">is_pretty_printing</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_recursively_expanded' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_is_recursively_expanded">is_recursively_expanded</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_recursively_expanded_in_context' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_is_recursively_expanded_in_context">is_recursively_expanded_in_context</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">;</span> <span class="elocal">ctx</span><span class="esymbol">:</span> <a class="eclass" href="../base/list_chart.html">LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_type_name_included' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_is_type_name_included">is_type_name_included</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`recorded_json_value' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_recorded_json_value">recorded_json_value</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a></span>
+	<span title="`reference_source_field_name' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_reference_source_field_name">reference_source_field_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a></span>
+	<span title="`reference_target_field_name' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_reference_target_field_name">reference_target_field_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a></span>
+	<span title="`serializer' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_serializer">serializer</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_serializer_chart.html">JSON_SERIALIZER</a></span>
+	<span title="`serializer_location' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_serializer_location">serializer_location</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+	<span title="`to_json' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_to_json">to_json</a> <span class="esymbol">(</span><span class="elocal">obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">;</span> <span class="elocal">a_caller_serializer</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_serializer_chart.html">JSON_SERIALIZER</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a></span>
+	<span title="`type_field_name' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_type_field_name">type_field_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`using_verbose_reference_identifier' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_using_verbose_reference_identifier">using_verbose_reference_identifier</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`on_field_end' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_on_field_end">on_field_end</a> <span class="esymbol">(</span><span class="elocal">a_field_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`on_field_start' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_on_field_start">on_field_start</a> <span class="esymbol">(</span><span class="elocal">a_field_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`on_object_serialization_end' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_on_object_serialization_end">on_object_serialization_end</a> <span class="esymbol">(</span><span class="elocal">j_value</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span></span>
+	<span title="`on_object_serialization_start' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_on_object_serialization_start">on_object_serialization_start</a> <span class="esymbol">(</span><span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span></span>
+	<span title="`record_reference' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_record_reference">record_reference</a> <span class="esymbol">(</span><span class="elocal">j_value</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_obj</span><span class="esymbol">:</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">)</span></span>
+	<span title="`register_serializer' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_register_serializer">register_serializer</a> <span class="esymbol">(</span><span class="elocal">a_conf</span><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">attached</span> <span class="ekeyword">like</span> <a class="efeature" href="../json/json_serializer_context_short.html#f_serializer">serializer</a><span class="esymbol">]</span> <span class="ekeyword">attached</span> <a class="eclass" href="../json/json_serializer_chart.html">JSON_SERIALIZER</a><span class="esymbol">;</span> <span class="elocal">a_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/type_chart.html">TYPE</a> <span class="esymbol">[</span><span class="ekeyword">detachable</span> <a class="eclass" href="../base/any_chart.html">ANY</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`reset' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_reset">reset</a></span>
+	<span title="`set_compact_printing' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_set_compact_printing">set_compact_printing</a></span>
+	<span title="`set_default_serializer' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_set_default_serializer">set_default_serializer</a> <span class="esymbol">(</span><span class="elocal">conv</span><span class="esymbol">:</span> <span class="esymbol">[</span><span class="ekeyword">like</span> <a class="efeature" href="../json/json_serializer_context_short.html#f_default_serializer">default_serializer</a><span class="esymbol">]</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_serializer_chart.html">JSON_SERIALIZER</a><span class="esymbol">)</span></span>
+	<span title="`set_is_type_name_included' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_set_is_type_name_included">set_is_type_name_included</a> <span class="esymbol">(</span><span class="elocal">b</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">)</span></span>
+	<span title="`set_pretty_printing' was declared in JSON_SERIALIZER_CONTEXT"><a class="efeature" href="../json/json_serializer_context_short.html#f_set_pretty_printing">set_pretty_printing</a></span>
+	<span title="`set_reference_source_field_name' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_set_reference_source_field_name">set_reference_source_field_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_reference_target_field_name' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_set_reference_target_field_name">set_reference_target_field_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_type_field_name' was declared in JSON_SERIALIZATION_CONTEXT_I"><a class="efeature" href="../json/json_serialization_context_i_short.html#f_set_type_field_name">set_type_field_name</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`use_shortest_reference_identifier' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_use_shortest_reference_identifier">use_shortest_reference_identifier</a></span>
+	<span title="`use_verbose_reference_identifier' is declared in `Current'"><a class="efeature" href="../json/json_serializer_context_with_reference_short.html#f_use_verbose_reference_identifier">use_verbose_reference_identifier</a></span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_serializer_context_with_reference_links.html">Relations</a>
+<a class="nav class" href="json_serializer_context_with_reference_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_serializer_context_with_reference"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

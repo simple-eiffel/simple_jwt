@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="            An JSON_OBJECT represent an object in JSON.             An object is an unordered set of name/value pairs  TTTExamples: TTTTobject TTTT{} TTTT{key: value} TTTT{key: value}"/>
+<meta name="author" content="$Author$"/>
+<meta name="license" content="MIT (see http://www.opensource.org/licenses/mit-license.php)"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2022, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_object Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_object_links.html">Relations</a>
+<a class="nav class" href="json_object_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_object"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">json_kernel</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> 
+		<span class="estring">&quot; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An JSON_OBJECT represent an object in JSON.</span>
+		<span class="estring"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An object is an unordered set of name/value pairs</span>
+		
+		<span class="estring">Examples:</span>
+		<span class="estring">object</span>
+		<span class="estring">{}</span>
+		<span class="estring">{%&quot;key%&quot;: value}</span>
+		<span class="estring">{%&quot;key%&quot;: %&quot;value%&quot;}&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_object_short.html#f_make_empty">make_empty</a><span class="esymbol">,</span> <a class="efeature" href="../json/json_object_short.html#f_make_with_capacity">make_with_capacity</a><span class="esymbol">,</span> <a class="efeature" href="../json/json_object_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/debug_output_chart.html">DEBUG_OUTPUT</a><span class="echar">*</span>
+	<a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="echar">*</span>
+	<a class="eclass" href="../base/table_iterable_chart.html">TABLE_ITERABLE</a><span class="echar">*</span> <span class="esymbol">[</span><span class="egeneric">G</span><span class="esymbol">,</span> <span class="egeneric">K</span><span class="esymbol">]</span>
+
+<span class="ekeyword">Queries</span>
+	<span title="`array_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_array_item">array_item</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_array_chart.html">JSON_ARRAY</a></span>
+	<span title="`boolean_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_boolean_item">boolean_item</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_boolean_chart.html">JSON_BOOLEAN</a></span>
+	<span title="`chained_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_chained_item">chained_item</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../json/json_object_short.html#f_chained_item">@</a><span class="esymbol">&quot;</span> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../json/json_object_short.html#f_chained_item">/</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a></span>
+	<span title="`count' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_count">count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`current_keys' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_current_keys">current_keys</a><span class="esymbol">:</span> <a class="eclass" href="../base/array_chart.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">]</span></span>
+	<span title="`debug_output' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_debug_output">debug_output</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`has_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_has_item">has_item</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`has_key' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_has_key">has_key</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`hash_code' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_hash_code">hash_code</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`is_array' was declared in JSON_VALUE"><a class="efeature" href="../json/json_value_short.html#f_is_array">is_array</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_empty' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_is_empty">is_empty</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_hashable' was declared in HASHABLE"><a class="efeature" href="../base/hashable_short.html#f_is_hashable">is_hashable</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_null' was declared in JSON_VALUE"><a class="efeature" href="../json/json_value_short.html#f_is_null">is_null</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_number' was declared in JSON_VALUE"><a class="efeature" href="../json/json_value_short.html#f_is_number">is_number</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_object' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_is_object">Is_object</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_string' was declared in JSON_VALUE"><a class="efeature" href="../json/json_value_short.html#f_is_string">is_string</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_item">item</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../json/json_object_short.html#f_item">[]</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a></span>
+	<span title="`map_representation' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_map_representation">map_representation</a><span class="esymbol">:</span> <a class="eclass" href="../base/hash_table_chart.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">,</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">]</span></span>
+	<span title="`new_cursor' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_new_cursor">new_cursor</a><span class="esymbol">:</span> <a class="eclass" href="../base/table_iteration_cursor_chart.html">TABLE_ITERATION_CURSOR</a> <span class="esymbol">[</span><a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">,</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">]</span></span>
+	<span title="`number_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_number_item">number_item</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_number_chart.html">JSON_NUMBER</a></span>
+	<span title="`object_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_object_item">object_item</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_chart.html">JSON_OBJECT</a></span>
+	<span title="`representation' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_representation">representation</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`same_caseless_string' was declared in JSON_VALUE"><a class="efeature" href="../json/json_value_short.html#f_same_caseless_string">same_caseless_string</a> <span class="esymbol">(</span><span class="elocal">a_string</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`same_string' was declared in JSON_VALUE"><a class="efeature" href="../json/json_value_short.html#f_same_string">same_string</a> <span class="esymbol">(</span><span class="elocal">a_string</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`string_item' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_string_item">string_item</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`accept' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_accept">accept</a> <span class="esymbol">(</span><span class="elocal">a_visitor</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_visitor_chart.html">JSON_VISITOR</a><span class="esymbol">)</span></span>
+	<span title="`put' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_put">put</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`put_boolean' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_put_boolean">put_boolean</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`put_integer' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_put_integer">put_integer</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_chart.html">INTEGER_64</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`put_natural' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_put_natural">put_natural</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/natural_64_chart.html">NATURAL_64</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`put_real' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_put_real">put_real</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_chart.html">REAL_64</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`put_string' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_put_string">put_string</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`remove' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_remove">remove</a> <span class="esymbol">(</span><span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`replace' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_replace">replace</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_chart.html">JSON_VALUE</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`replace_with_boolean' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_replace_with_boolean">replace_with_boolean</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`replace_with_integer' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_replace_with_integer">replace_with_integer</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_chart.html">INTEGER_64</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`replace_with_real' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_replace_with_real">replace_with_real</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_chart.html">REAL_64</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`replace_with_string' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_replace_with_string">replace_with_string</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`replace_with_with_natural' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_replace_with_with_natural">replace_with_with_natural</a> <span class="esymbol">(</span><span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/natural_64_chart.html">NATURAL_64</a><span class="esymbol">;</span> <span class="elocal">a_key</span><span class="esymbol">:</span> <a class="eclass" href="../json/json_string_chart.html">JSON_STRING</a><span class="esymbol">)</span></span>
+	<span title="`wipe_out' is declared in `Current'"><a class="efeature" href="../json/json_object_short.html#f_wipe_out">wipe_out</a></span>
+
+<span class="ekeyword">Constraints</span>
+	<span class="etag">items not void</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="json_object_links.html">Relations</a>
+<a class="nav class" href="json_object_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="json_object"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

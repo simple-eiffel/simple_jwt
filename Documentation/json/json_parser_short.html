@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Parse serialized JSON data"/>
+<meta name="author" content="$Author$"/>
+<meta name="eis" content="name=RFC7159, protocol=URI, src=https://tools.ietf.org/html/rfc7159"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2010-2019, Javier Velilla, Jocelyn Fiat, Eiffel Software and others https://github.com/eiffelhub/json."/>
+<meta name="license" content="https://github.com/eiffelhub/json/blob/master/License.txt"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>json_parser Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_parser_chart.html">Chart</a>
+<a class="nav class" href="json_parser_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_parser"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Parse serialized JSON data&quot;</span>
+	<span class="eitag">author</span><span class="esymbol">:</span> <span class="estring">&quot;$Author$&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=RFC7159&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;protocol=URI&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=</span><a class="estring" href="https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../json/json_parser_short.html">JSON_PARSER</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../json/json_parser_short.html#f_make">make</a><span class="esymbol">,</span>
+	<a class="efeature" href="../json/json_parser_short.html#f_make_with_string">make_with_string</a><span class="esymbol">,</span>
+	<a class="efeature" href="../json/json_parser_short.html#f_make_parser">make_parser</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status report</span>
+
+	<a name="f_is_parsed"></a><a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is parsed ?</span>
+
+	<a name="f_is_valid"></a><a class="efeature" href="../json/json_parser_short.html#f_is_valid">is_valid</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is valid?</span>
+
+	<a name="f_has_error"></a><a class="efeature" href="../json/json_parser_short.html#f_has_error">has_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Has error?</span>
+
+	<a name="f_errors"></a><a class="efeature" href="../json/json_parser_short.html#f_errors">errors</a><span class="esymbol">:</span> <a class="eclass" href="../base/linked_list_short.html">LINKED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Current errors</span>
+
+	<a name="f_errors_as_string"></a><a class="efeature" href="../json/json_parser_short.html#f_errors_as_string">errors_as_string</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> String representation of </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_errors">errors</a><span class="ecomment">`</span><span class="ecomment">.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings</span>
+
+	<a name="f_default_array_size"></a><a class="efeature" href="../json/json_parser_short.html#f_default_array_size">default_array_size</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> JSON array are initialized with </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_default_array_size">default_array_size</a><span class="ecomment">`</span><span class="ecomment"> capability.</span>
+
+	<a name="f_default_object_size"></a><a class="efeature" href="../json/json_parser_short.html#f_default_object_size">default_object_size</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> JSON object are initialized with </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_default_object_size">default_object_size</a><span class="ecomment">`</span><span class="ecomment"> capability.	</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings change</span>
+
+	<a name="f_set_default_array_size"></a><a class="efeature" href="../json/json_parser_short.html#f_set_default_array_size">set_default_array_size</a> <span class="esymbol">(</span><span class="elocal">nb</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_default_array_size">default_array_size</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">nb</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">is_not_yet_parsed</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a>
+
+	<a name="f_set_default_object_size"></a><a class="efeature" href="../json/json_parser_short.html#f_set_default_object_size">set_default_object_size</a> <span class="esymbol">(</span><span class="elocal">nb</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_default_object_size">default_object_size</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">nb</span><span class="ecomment">.	</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">is_not_yet_parsed</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Constants			</span>
+
+	<a name="f_json_string_buffer_size"></a><a class="efeature" href="../json/json_parser_short.html#f_json_string_buffer_size">json_string_buffer_size</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> JSON string parsing is using a buffer with </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_json_string_buffer_size">json_string_buffer_size</a><span class="ecomment">`</span><span class="ecomment"> capability.</span>
+
+	<a name="f_json_number_buffer_size"></a><a class="efeature" href="../json/json_parser_short.html#f_json_number_buffer_size">json_number_buffer_size</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> JSON number parsing is using a buffer with </span><span class="ecomment">`</span><a class="efeature" href="../json/json_parser_short.html#f_json_number_buffer_size">json_number_buffer_size</a><span class="ecomment">`</span><span class="ecomment"> capability.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_parsed_json_value"></a><a class="efeature" href="../json/json_parser_short.html#f_parsed_json_value">parsed_json_value</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_value_short.html">JSON_VALUE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Parsed json value if any.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">is_parsed</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">attached_result_if_valid</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_is_valid">is_valid</a> <a class="ekeyword" href="../base/boolean_short.html#f_implication">implies</a> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_parsed_json_object"></a><a class="efeature" href="../json/json_parser_short.html#f_parsed_json_object">parsed_json_object</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_object_short.html">JSON_OBJECT</a>
+			<span class="ecomment">--</span><span class="ecomment"> parsed json value as a JSON_OBJECT if it is an object.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">is_parsed</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a>
+
+	<a name="f_parsed_json_array"></a><a class="efeature" href="../json/json_parser_short.html#f_parsed_json_array">parsed_json_array</a><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../json/json_array_short.html">JSON_ARRAY</a>
+			<span class="ecomment">--</span><span class="ecomment"> parsed json value as a JSON_OBJECT if it is an array.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">is_parsed</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Commands</span>
+
+	<a name="f_reset"></a><a class="efeature" href="../json/json_parser_short.html#f_reset">reset</a>
+			<span class="ecomment">--</span><span class="ecomment"> Reset parsing values.</span>
+
+	<a name="f_parse_string"></a><a class="efeature" href="../json/json_parser_short.html#f_parse_string">parse_string</a> <span class="esymbol">(</span><span class="elocal">a_json_content</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Parse string </span><span class="equoted">a_json_content</span><span class="ecomment">.</span>
+
+	<a name="f_parse_content"></a><a class="efeature" href="../json/json_parser_short.html#f_parse_content">parse_content</a>
+			<span class="ecomment">--</span><span class="ecomment"> Parse JSON content </span><span class="ecomment">`</span><a class="efeature" href="../json/json_reader_short.html#f_representation">representation</a><span class="ecomment">`</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> start ::= object | array</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_parsed</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_is_parsed">is_parsed</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_report_error"></a><a class="efeature" href="../json/json_parser_short.html#f_report_error">report_error</a> <span class="esymbol">(</span><span class="elocal">e</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Report error </span><span class="equoted">e</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">e_not_void</span><span class="esymbol">:</span> <span class="elocal">e</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">has_error</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_has_error">has_error</a>
+			<span class="etag">is_not_valid</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../json/json_parser_short.html#f_is_valid">is_valid</a>
+
+	<a name="f_report_error_at"></a><a class="efeature" href="../json/json_parser_short.html#f_report_error_at">report_error_at</a> <span class="esymbol">(</span><span class="elocal">e</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">pos</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Report error </span><span class="equoted">e</span><span class="ecomment"> at position </span><span class="equoted">pos</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">e_not_void</span><span class="esymbol">:</span> <span class="elocal">e</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">pos_valid</span><span class="esymbol">:</span> <span class="elocal">pos</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">has_error</span><span class="esymbol">:</span> <a class="efeature" href="../json/json_parser_short.html#f_has_error">has_error</a>
+			<span class="etag">is_not_valid</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../json/json_parser_short.html#f_is_valid">is_valid</a>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;2010-2019, Javier Velilla, Jocelyn Fiat, Eiffel Software and others </span><a class="estring" href="https://github.com/eiffelhub/json.">https://github.com/eiffelhub/json.</a><span class="estring">&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;</span><a class="estring" href="https://github.com/eiffelhub/json/blob/master/License.txt">https://github.com/eiffelhub/json/blob/master/License.txt</a><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../json/json_parser_short.html">JSON_PARSER</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="json_parser_chart.html">Chart</a>
+<a class="nav class" href="json_parser_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="json_parser"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+
