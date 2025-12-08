@@ -4,7 +4,7 @@
 
 # simple_jwt
 
-**[Documentation](https://ljr1981.github.io/simple_jwt/)** | **[Watch the Build Video](https://youtu.be/Rh3KhoK_W5U)**
+**[Documentation](https://simple-eiffel.github.io/simple_jwt/)** | **[Watch the Build Video](https://youtu.be/Rh3KhoK_W5U)**
 
 JSON Web Token (JWT) library for Eiffel.
 
