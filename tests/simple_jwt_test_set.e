@@ -3,7 +3,7 @@ note
 	author: "Larry Rix"
 	date: "$Date$"
 	revision: "$Revision$"
-	testing: "type/manual"
+	testing: "covers"
 
 class
 	SIMPLE_JWT_TEST_SET
@@ -563,7 +563,7 @@ feature -- Test: Token Decoding
 			token := jwt.create_token (claims)
 
 			user_id := jwt.get_integer_claim (token, "user_id")
-			assert_integers_64_equal ("user_id", 12345, user_id)
+			assert ("user_id equals 12345", user_id = 12345)
 		end
 
 feature -- Test: Token Parts

@@ -26,6 +26,7 @@
 		<description>Test target for simple_jwt</description>
 		<root class="JWT_TEST_APP" feature="make"/>
 		<library name="simple_testing" location="$SIMPLE_TESTING\simple_testing.ecf"/>
+		<library name="testing" location="$ISE_LIBRARY\library\testing\testing.ecf"/>
 		<cluster name="tests" location=".\tests\" recursive="true"/>
 	</target>
 </system>
