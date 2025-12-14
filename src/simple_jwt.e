@@ -584,14 +584,10 @@ feature {NONE} -- Implementation
 	current_unix_time: INTEGER_64
 			-- Current Unix timestamp in seconds.
 		local
-			l_date: DATE_TIME
-			l_epoch: DATE_TIME
-			l_duration: DATE_TIME_DURATION
+			l_dt: SIMPLE_DATE_TIME
 		do
-			create l_date.make_now_utc
-			create l_epoch.make (1970, 1, 1, 0, 0, 0)
-			l_duration := l_date.relative_duration (l_epoch)
-			Result := l_duration.seconds_count
+			create l_dt.make_now
+			Result := l_dt.to_timestamp
 		end
 
 invariant

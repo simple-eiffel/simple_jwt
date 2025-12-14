@@ -387,18 +387,14 @@ feature -- Test: Not-Before (nbf) Validation
 			jwt: SIMPLE_JWT
 			claims: JSON_OBJECT
 			token: STRING
-			l_date: DATE_TIME
-			l_epoch: DATE_TIME
-			l_duration: DATE_TIME_DURATION
+			l_dt: SIMPLE_DATE_TIME
 			l_now: INTEGER_64
 		do
 			create jwt.make ("secret")
 
 			-- Get current time
-			create l_date.make_now_utc
-			create l_epoch.make (1970, 1, 1, 0, 0, 0)
-			l_duration := l_date.relative_duration (l_epoch)
-			l_now := l_duration.seconds_count
+			create l_dt.make_now
+			l_now := l_dt.to_timestamp
 
 			create claims.make_empty
 			claims.put_string ("user", "sub")
@@ -418,18 +414,14 @@ feature -- Test: Full Verification
 			jwt: SIMPLE_JWT
 			claims: JSON_OBJECT
 			token: STRING
-			l_date: DATE_TIME
-			l_epoch: DATE_TIME
-			l_duration: DATE_TIME_DURATION
+			l_dt: SIMPLE_DATE_TIME
 			l_now: INTEGER_64
 		do
 			create jwt.make ("secret")
 
 			-- Get current time
-			create l_date.make_now_utc
-			create l_epoch.make (1970, 1, 1, 0, 0, 0)
-			l_duration := l_date.relative_duration (l_epoch)
-			l_now := l_duration.seconds_count
+			create l_dt.make_now
+			l_now := l_dt.to_timestamp
 
 			create claims.make_empty
 			claims.put_string ("user", "sub")
