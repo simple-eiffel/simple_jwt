@@ -20,6 +20,7 @@
 		<library name="simple_datetime" location="$SIMPLE_EIFFEL/simple_datetime/simple_datetime.ecf"/>
 		<library name="json" location="$ISE_LIBRARY\contrib\library\text\parser\json\library\json.ecf"/>
 		<library name="simple_foundation_api" location="$SIMPLE_EIFFEL/simple_foundation_api/simple_foundation_api.ecf"/>
+		<library name="simple_logger" location="$SIMPLE_EIFFEL/simple_logger/simple_logger.ecf"/>
 		<cluster name="src" location=".\src\" recursive="true"/>
 	</target>
 	<target name="simple_jwt_tests" extends="simple_jwt">

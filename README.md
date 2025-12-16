@@ -33,7 +33,47 @@ SIMPLE_FOUNDATION_API=D:\prod\simple_foundation_api
 
 Note: simple_jwt uses simple_foundation_api for encoding and hashing operations.
 
-## Usage
+## Quick Start (Zero-Configuration)
+
+Use `SIMPLE_JWT_QUICK` for the simplest possible JWT operations:
+
+```eiffel
+local
+    jwt: SIMPLE_JWT_QUICK
+    token: STRING
+do
+    -- Create JWT handler (secret should be 32+ chars for security)
+    create jwt.make ("your-super-secret-key-at-least-32-chars")
+
+    -- Create token for user (no expiration)
+    token := jwt.create_for_user ("user123")
+
+    -- Create token with expiration (24 hours)
+    token := jwt.create_with_expiry ("user123", 24)
+
+    -- Verify token
+    if jwt.is_valid (token) then
+        print ("User: " + jwt.get_user_id (token))
+    end
+
+    -- Check expiration
+    if jwt.is_expired (token) then
+        print ("Token expired - please login again")
+    end
+
+    -- Get custom claims
+    if attached jwt.get_claim (token, "role") as role then
+        print ("User role: " + role)
+    end
+
+    -- Error info
+    if not jwt.is_valid (token) then
+        print ("Invalid: " + jwt.last_error)
+    end
+end
+```
+
+## Standard API (Full Control)
 
 ### Create a Token
 
