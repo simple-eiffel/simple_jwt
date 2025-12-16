@@ -22,13 +22,12 @@ JSON Web Token (JWT) library for Eiffel.
 Add to your ECF:
 
 ```xml
-<library name="simple_jwt" location="$SIMPLE_JWT\simple_jwt.ecf"/>
+<library name="simple_jwt" location="$SIMPLE_EIFFEL/simple_jwt/simple_jwt.ecf"/>
 ```
 
-Set environment variables:
+Set environment variable (one-time setup for all simple_* libraries):
 ```
-SIMPLE_JWT=D:\prod\simple_jwt
-SIMPLE_FOUNDATION_API=D:\prod\simple_foundation_api
+SIMPLE_EIFFEL=D:\prod
 ```
 
 Note: simple_jwt uses simple_foundation_api for encoding and hashing operations.
