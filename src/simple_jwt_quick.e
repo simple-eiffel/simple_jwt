@@ -45,7 +45,7 @@ feature {NONE} -- Initialization
 		do
 			create jwt.make (a_secret)
 			jwt.set_clock_skew (60)  -- 1 minute tolerance for distributed systems
-			create logger.make ("jwt_quick")
+			create logger.make
 			logger.debug_log ("JWT handler initialized")
 		ensure
 			jwt_exists: jwt /= Void
