@@ -49,7 +49,9 @@ feature {NONE} -- Initialization
 			secret_not_empty: not a_secret.is_empty
 		do
 			secret := a_secret
-			create foundation
+			create base64.make
+			create hasher.make
+			create uuid_gen.make
 			algorithm := "HS256"
 			clock_skew := 0
 		ensure
@@ -149,7 +151,7 @@ feature -- Token Creation
 		local
 			l_jti: STRING
 		do
-			l_jti := foundation.new_uuid
+			l_jti := uuid_gen.new_v4_string
 
 			-- Add jti to claims (don't modify original)
 			a_claims.put_string (l_jti, "jti")
@@ -174,7 +176,7 @@ feature -- Token Verification
 				l_signature_input := l_parts [1] + "." + l_parts [2]
 				l_expected_sig := create_signature (l_signature_input)
 				-- Use constant-time comparison to prevent timing attacks
-				Result := foundation.secure_compare (l_parts [3], l_expected_sig)
+				Result := hasher.secure_compare (l_parts [3], l_expected_sig)
 			end
 		end
 
@@ -520,7 +522,13 @@ feature {NONE} -- Implementation
 	algorithm: STRING
 			-- Algorithm (currently only HS256).
 
-	foundation: FOUNDATION
+	base64: SIMPLE_BASE64
+
+	hasher: SIMPLE_HASH
+			-- Hash helper for HMAC and secure compare.
+
+	uuid_gen: SIMPLE_UUID
+			-- UUID generator.
 			-- Foundation API for encoding, hashing, and UUID generation.
 
 	header_json: STRING
@@ -536,7 +544,7 @@ feature {NONE} -- Implementation
 		local
 			l_hmac_bytes: ARRAY [NATURAL_8]
 		do
-			l_hmac_bytes := foundation.hmac_sha256_bytes (secret, a_input)
+			l_hmac_bytes := hasher.hmac_sha256_bytes (secret, a_input)
 			Result := base64_url_encode_bytes (l_hmac_bytes)
 		end
 
@@ -545,7 +553,7 @@ feature {NONE} -- Implementation
 		require
 			input_not_void: a_input /= Void
 		do
-			Result := foundation.base64_url_encode (a_input)
+			Result := base64.encode_url (a_input)
 		ensure
 			no_padding: not Result.has ('=')
 		end
@@ -562,7 +570,7 @@ feature {NONE} -- Implementation
 			across a_bytes as b loop
 				l_str.append_character (b.item.to_character_8)
 			end
-			Result := foundation.base64_url_encode (l_str)
+			Result := base64.encode_url (l_str)
 		end
 
 	base64_url_decode (a_input: STRING): STRING
@@ -570,7 +578,7 @@ feature {NONE} -- Implementation
 		require
 			input_not_void: a_input /= Void
 		do
-			Result := foundation.base64_url_decode (a_input)
+			Result := base64.decode_url (a_input)
 		end
 
 	is_none_algorithm (a_alg: STRING): BOOLEAN
@@ -594,7 +602,9 @@ invariant
 	secret_exists: secret /= Void
 	secret_not_empty: not secret.is_empty
 	algorithm_set: algorithm /= Void
-	foundation_exists: foundation /= Void
+	base64_exists: base64 /= Void
+	hasher_exists: hasher /= Void
+	uuid_gen_exists: uuid_gen /= Void
 	clock_skew_non_negative: clock_skew >= 0
 
 note

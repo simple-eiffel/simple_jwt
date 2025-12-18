@@ -237,15 +237,15 @@ feature -- Test: Security - Algorithm Validation (CRITICAL)
 			testing: "covers/{SIMPLE_JWT}.verify_secure", "covers/{SIMPLE_JWT}.verify_with_algorithm"
 		local
 			jwt: SIMPLE_JWT
-			foundation: FOUNDATION
+			base64: SIMPLE_BASE64
 			fake_header, fake_payload, fake_token: STRING
 		do
 			create jwt.make ("secret")
-			create foundation
+			create base64.make
 
 			-- Craft a token with "none" algorithm (attack vector)
-			fake_header := foundation.base64_url_encode ("{%"alg%":%"none%",%"typ%":%"JWT%"}")
-			fake_payload := foundation.base64_url_encode ("{%"sub%":%"admin%"}")
+			fake_header := base64.encode_url ("{%"alg%":%"none%",%"typ%":%"JWT%"}")
+			fake_payload := base64.encode_url ("{%"sub%":%"admin%"}")
 			fake_token := fake_header + "." + fake_payload + "."
 
 			-- verify_secure should reject it
@@ -259,20 +259,20 @@ feature -- Test: Security - Algorithm Validation (CRITICAL)
 			testing: "covers/{SIMPLE_JWT}.verify_secure"
 		local
 			jwt: SIMPLE_JWT
-			foundation: FOUNDATION
+			base64: SIMPLE_BASE64
 			fake_token: STRING
 		do
 			create jwt.make ("secret")
-			create foundation
+			create base64.make
 
 			-- Try "NONE" (uppercase)
-			fake_token := foundation.base64_url_encode ("{%"alg%":%"NONE%",%"typ%":%"JWT%"}") + "." +
-						  foundation.base64_url_encode ("{%"sub%":%"admin%"}") + "."
+			fake_token := base64.encode_url ("{%"alg%":%"NONE%",%"typ%":%"JWT%"}") + "." +
+						  base64.encode_url ("{%"sub%":%"admin%"}") + "."
 			assert ("NONE rejected", not jwt.verify_secure (fake_token))
 
 			-- Try "None" (mixed case)
-			fake_token := foundation.base64_url_encode ("{%"alg%":%"None%",%"typ%":%"JWT%"}") + "." +
-						  foundation.base64_url_encode ("{%"sub%":%"admin%"}") + "."
+			fake_token := base64.encode_url ("{%"alg%":%"None%",%"typ%":%"JWT%"}") + "." +
+						  base64.encode_url ("{%"sub%":%"admin%"}") + "."
 			assert ("None rejected", not jwt.verify_secure (fake_token))
 		end
 
