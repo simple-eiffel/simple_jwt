@@ -49,7 +49,7 @@ feature {NONE} -- Initialization
 			secret_not_empty: not a_secret.is_empty
 		do
 			secret := a_secret
-			create foundation.make
+			create foundation
 			algorithm := "HS256"
 			clock_skew := 0
 		ensure

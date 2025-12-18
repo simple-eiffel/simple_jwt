@@ -241,7 +241,7 @@ feature -- Test: Security - Algorithm Validation (CRITICAL)
 			fake_header, fake_payload, fake_token: STRING
 		do
 			create jwt.make ("secret")
-			create foundation.make
+			create foundation
 
 			-- Craft a token with "none" algorithm (attack vector)
 			fake_header := foundation.base64_url_encode ("{%"alg%":%"none%",%"typ%":%"JWT%"}")
@@ -263,7 +263,7 @@ feature -- Test: Security - Algorithm Validation (CRITICAL)
 			fake_token: STRING
 		do
 			create jwt.make ("secret")
-			create foundation.make
+			create foundation
 
 			-- Try "NONE" (uppercase)
 			fake_token := foundation.base64_url_encode ("{%"alg%":%"NONE%",%"typ%":%"JWT%"}") + "." +
