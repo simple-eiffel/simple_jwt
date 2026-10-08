@@ -84,7 +84,7 @@ feature -- Token Creation
 			create l_claims.make_empty
 			l_claims.put_string (a_user_id, "sub")
 			l_claims.put_integer (current_timestamp, "iat")
-			l_claims.put (create {JSON_NUMBER}.make_integer (l_exp.to_integer_32), "exp")
+			l_claims.put (create {JSON_NUMBER}.make_integer (l_exp), "exp")
 			Result := jwt.create_token (l_claims)
 			logger.debug_log ("Created token for user: " + a_user_id + " (expires in " + a_hours.out + "h)")
 		ensure
@@ -106,16 +106,11 @@ feature -- Token Creation
 			create l_claims.make_empty
 			l_claims.put_string (a_user_id, "sub")
 			l_claims.put_integer (current_timestamp, "iat")
-			l_claims.put (create {JSON_NUMBER}.make_integer (l_exp.to_integer_32), "exp")
+			l_claims.put (create {JSON_NUMBER}.make_integer (l_exp), "exp")
 
-			-- Add custom data
-			from
-				a_data.start
-			until
-				a_data.after
-			loop
-				l_claims.put_string (a_data.item_for_iteration, a_data.key_for_iteration.to_string_8)
-				a_data.forth
+			-- Add custom data (across leaves the caller's cursor alone)
+			across a_data as ic loop
+				l_claims.put_string (ic, @ic.key.to_string_8)
 			end
 
 			Result := jwt.create_token (l_claims)
