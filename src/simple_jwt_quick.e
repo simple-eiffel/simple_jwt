@@ -46,6 +46,7 @@ feature {NONE} -- Initialization
 			create jwt.make (a_secret)
 			jwt.set_clock_skew (60)  -- 1 minute tolerance for distributed systems
 			create logger.make
+			last_error := ""
 			logger.debug_log ("JWT handler initialized")
 		ensure
 			jwt_exists: jwt /= Void
@@ -108,8 +109,13 @@ feature -- Token Creation
 			l_claims.put (create {JSON_NUMBER}.make_integer (l_exp.to_integer_32), "exp")
 
 			-- Add custom data
-			across a_data as item loop
-				l_claims.put_string (item, item.key)
+			from
+				a_data.start
+			until
+				a_data.after
+			loop
+				l_claims.put_string (a_data.item_for_iteration, a_data.key_for_iteration.to_string_8)
+				a_data.forth
 			end
 
 			Result := jwt.create_token (l_claims)
@@ -128,9 +134,11 @@ feature -- Token Verification
 		do
 			Result := jwt.verify_secure (a_token)
 			if Result then
+				last_error := ""
 				logger.debug_log ("Token valid")
 			else
-				logger.debug_log ("Token invalid: " + jwt.last_error.out)
+				last_error := "Token failed verification (bad signature, expired, or malformed)"
+				logger.debug_log ("Token invalid: " + last_error)
 			end
 		end
 
@@ -142,7 +150,7 @@ feature -- Token Verification
 			l_claims: detachable JSON_OBJECT
 			l_exp: INTEGER_64
 		do
-			l_claims := jwt.decode_payload (a_token)
+			l_claims := jwt.decode_claims (a_token)
 			if attached l_claims as c and then attached {JSON_NUMBER} c.item ("exp") as exp then
 				l_exp := exp.integer_64_item
 				Result := current_timestamp > l_exp
@@ -159,7 +167,7 @@ feature -- Token Data Extraction
 		local
 			l_claims: detachable JSON_OBJECT
 		do
-			l_claims := jwt.decode_payload (a_token)
+			l_claims := jwt.decode_claims (a_token)
 			if attached l_claims as c and then attached {JSON_STRING} c.item ("sub") as sub then
 				Result := sub.unescaped_string_8
 			else
@@ -177,7 +185,7 @@ feature -- Token Data Extraction
 		local
 			l_claims: detachable JSON_OBJECT
 		do
-			l_claims := jwt.decode_payload (a_token)
+			l_claims := jwt.decode_claims (a_token)
 			if attached l_claims as c and then attached {JSON_STRING} c.item (a_claim_name) as val then
 				Result := val.unescaped_string_8
 			end
@@ -191,7 +199,7 @@ feature -- Token Data Extraction
 		local
 			l_claims: detachable JSON_OBJECT
 		do
-			l_claims := jwt.decode_payload (a_token)
+			l_claims := jwt.decode_claims (a_token)
 			if attached l_claims as c and then attached {JSON_NUMBER} c.item ("exp") as exp then
 				Result := exp.integer_64_item
 			end
@@ -200,12 +208,7 @@ feature -- Token Data Extraction
 feature -- Status
 
 	last_error: STRING
-			-- Error message from last verification failure.
-		do
-			Result := jwt.last_error.out
-		ensure
-			result_exists: Result /= Void
-		end
+			-- Error message from last verification failure (empty when none).
 
 feature -- Advanced Access
 
